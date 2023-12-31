@@ -17,7 +17,7 @@ class UserController extends Controller
 
         $user = new User();
         $user->username = $request->username;
-        $user->hashed_password = Hash::make($request->username);
+        $user->hashed_password = Hash::make($request->password);
         $user->save();
         return redirect(route('home'));
     }

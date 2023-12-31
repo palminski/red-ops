@@ -19,6 +19,10 @@ class User extends Authenticatable
         'hashed_password'
     ];
 
+    protected $hidden = [
+        'hashed_password'
+    ];
+
     public function getAuthPassword()
     {
         return $this->hashed_password;

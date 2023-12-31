@@ -14,16 +14,13 @@
     <div class="block" >
         <h1>Red-Ops</h1>
         @if (Auth::check())
-            <h2>Logged in as {{Auth:user()->username}}</h2>
+        <h2>Welcome Agent {{Auth::user()->username}}.</h2>
         @else
-        {{-- @include('components.login-form') --}}
+        <h2><a href="{{route('login')}}">Log in</a> or <a href="{{route('signup')}}">Sign up</a></h2>
         @endif
         
     </div>
-    <br>
-    <div class="block">
-        @include('components.signup-form')
-    </div>
+    
     <br>
     <div class="block">
         <h1>DATA</h1>

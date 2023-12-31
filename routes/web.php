@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,9 @@ Route::get('/data', [DataController::class, 'showForm'])->name('show-form');
 
 Route::get('/show-data', [DataController::class, 'showData'])->name('show-data');
 
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::get('/signup', [AuthController::class, 'showSignupForm'])->name('signup');
+
 //Post =====================================================
 
 Route::post('/clear-session', [DataController::class, 'clearSession'])->name('clear-session');
@@ -31,5 +35,8 @@ Route::post('/clear-session', [DataController::class, 'clearSession'])->name('cl
 Route::post('/submit-form', [DataController::class, 'handleSubmit'])->name('submit-form');
 
 Route::post('/add-user', [UserController::class, "addUser"])->name("add-user");
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+use App\Models\MoviePick;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -22,6 +24,11 @@ class User extends Authenticatable
     protected $hidden = [
         'hashed_password'
     ];
+
+    public function moviePicks()
+    {
+        return $this->hasMany(MoviePick::class);
+    }
 
     public function getAuthPassword()
     {

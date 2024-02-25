@@ -3,7 +3,7 @@
         <li> <a href="/">Home</li></a>
         
         @if (Auth::check())
-        <li> <a href="/data">Movies</a></li>
+        <li> <a href={{route('movie-queue')}}>Movies</a></li>
         <li>
             <form action="{{route('logout')}}" method="post">
                 @csrf

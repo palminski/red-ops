@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\MoviePick;
 
 class HomeController extends Controller
 {
@@ -20,15 +21,13 @@ class HomeController extends Controller
     {
 
 
-        $formData = $request->session()->get('formData', []);
-
-        $users = User::select('username')->get();
+        $moviePicks = MoviePick::all()
+                ->sortByDesc('created_at');
 
         return view(
             'home',
             [
-                'users' => $users,
-                'formData' => $formData
+                'moviePicks' => $moviePicks, 
             ]
         );
     }

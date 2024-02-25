@@ -24,6 +24,21 @@ body {
     margin: 0;
 }
 
+input[type="text"] {
+    /* Specify the desired styles */
+    padding: 5px;
+    border-color: #aa3f3f;
+    color: #aa3f3f; /* Set the text color */
+    background-color: #000000; /* Set the background color */
+    font-weight: bold;
+}
+
+button {
+    padding: 5px;
+    color: #582727;
+    font-weight: bold;
+}
+
 a, a:hover, a:active, a:visited {color: #ffbaba;}
 .link-button {
     background: none !important;
@@ -52,6 +67,11 @@ nav {
     margin: 0 auto;
     filter: drop-shadow(0px 5px 3px rgb(255, 61, 61));
 }
+
+.auth-form {
+    text-align: left;
+}
+
 nav ul {
     padding: 10px 0;
 }
@@ -72,7 +92,11 @@ li {
     color: rgb(167, 78, 78);
 }
 
+.terminal-highlight {
+    color: red !important;
+}
 .highlight {
+    font-weight: bold;
     color: red !important;
 }
 
@@ -83,4 +107,22 @@ nav ul li form {
 }
 li a {
     text-decoration: none;
+}
+
+/* Movie List */
+.movie-queue {
+    text-align: left;
+}
+
+.movie-queue li {
+    padding: 25px;
+    background-color: rgb(49, 40, 40);
+}
+.movie-queue li:nth-child(odd) {
+    padding: 25px;
+    background-color: rgb(66, 53, 53);
+}
+
+li form {
+    padding: 0;
 }

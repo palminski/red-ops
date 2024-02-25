@@ -10,7 +10,7 @@
         @if (session('error-message'))
             <h3 style="color: red">{{ session('error-message') }}</h3>
         @endif
-        <form action="{{ route('add-user') }}" method="POST">
+        <form class="auth-form" action="{{ route('add-user') }}" method="POST">
             @csrf
             <h2>Sign-Up</h2>
             <hr>
@@ -18,10 +18,12 @@
                 <label for="username">Username:</label>
                 <input type="text" name="username" id="username" required>
             </div>
+            <br>
             <div>
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" required>
             </div>
+            <br>
             <div>
                 <button type="submit">Sign Up</button>
             </div>

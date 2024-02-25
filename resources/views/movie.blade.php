@@ -12,8 +12,8 @@
     <br>
     <div class="block">
         <h1>Current Queue</h1>
-        <hr>
-        <ul>
+        
+        <ul class="movie-queue">
             @foreach ($users as $user)
                 @if ($user == Auth::user())
                     <li class="highlight">

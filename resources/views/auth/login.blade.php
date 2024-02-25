@@ -8,7 +8,7 @@
 @section('content')
 <br>
 <div class="block">
-    <form action="{{ route('login') }}" method="post">
+    <form class="auth-form" action="{{ route('login') }}" method="post">
         @csrf
         <h2>Log In</h2>
         <hr>
@@ -16,15 +16,18 @@
             <label for="username">Username:</label>
             <input type="text" name="username" id="username" required>
         </div>
+        <br>
         <div>
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" required>
         </div>
+        <br>
         <div>
-            <button type="submit">Log In</button>
+            <button type="submit">Log In To Red-Ops</button>
         </div>
-    </form>
-    <hr>
+        <hr>
     <p>or <a href="{{route('signup')}}">Sign up</a></p>
+    </form>
+    
 </div>
 @endsection

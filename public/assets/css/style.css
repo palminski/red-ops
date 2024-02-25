@@ -13,6 +13,9 @@
 body {
     
     /* background-color: #3c3c3c; */
+    font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
     
     animation-name: pulse;
     animation-duration: 3s;
@@ -40,12 +43,13 @@ nav {
 }
 
 .block {
+    max-width: 800px;
     background-color: #292929;
     text-align: center;
     border-radius: 20px;
     color: #ffbaba;
     padding: 20px;
-    margin: 0 50px;
+    margin: 0 auto;
     filter: drop-shadow(0px 5px 3px rgb(255, 61, 61));
 }
 nav ul {
@@ -57,11 +61,24 @@ ul {
     list-style-type: none;
 }
 li {
-    display: inline;
     padding: 15px;
     text-decoration: none;
 } 
+.terminal {
+    background-color: black;
+    text-align: left;
+}
+.terminal-comment {
+    color: rgb(167, 78, 78);
+}
+
+.highlight {
+    color: red !important;
+}
+
 nav ul li form {
+    display: inline;
+}nav ul li {
     display: inline;
 }
 li a {

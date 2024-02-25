@@ -11,6 +11,7 @@
     <form action="{{ route('login') }}" method="post">
         @csrf
         <h2>Log In</h2>
+        <hr>
         <div>
             <label for="username">Username:</label>
             <input type="text" name="username" id="username" required>
@@ -23,5 +24,7 @@
             <button type="submit">Log In</button>
         </div>
     </form>
+    <hr>
+    <p>or <a href="{{route('signup')}}">Sign up</a></p>
 </div>
 @endsection

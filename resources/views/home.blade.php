@@ -12,36 +12,27 @@
     @endif
     <br>
     <div class="block" >
-        <h1>Red-Ops</h1>
+        <h1>Welcome to Red-Ops</h1>
         @if (Auth::check())
-        <h2>Welcome Agent {{Auth::user()->username}}.</h2>
+        <h2>Welcome Agent {{ucfirst(Auth::user()->username)}}.</h2>
         @else
-        <h2><a href="{{route('login')}}">Log in</a> or <a href="{{route('signup')}}">Sign up</a></h2>
+        <h4><a href="{{route('login')}}">> Enter <</a></h4>
         @endif
         
     </div>
     
     <br>
+    <br>
     <div class="block">
-        <h1>DATA</h1>
-        <hr>
-        @if ($users)
-            <ul>
-                @foreach ($users as $user)
-                    <li>{{$user->username}}</li>
-                @endforeach
-            </ul>
-            <hr>
-        @endif
-        @if ($formData)
-            <p><strong>Name:</strong> {{ $formData['name'] ?? '[Not Provided]' }}</p>
-            <p><strong>Info:</strong> {{ $formData['info'] ?? '[Not Provided]' }}</p>
-            <form action="{{route('clear-session')}}" method="POST">
-            @csrf
-            <button type="submit">Clear Session Data</button>
-            </form>
-        @else
-            <p><strong>No Data in session</strong></p>
-        @endif
+        <ul class="terminal">
+            <li class="terminal-comment">// Red-Ops Terminal Injection</li>
+            @foreach ($moviePicks as $moviePick)
+                
+                    <li >
+                        <span>{{$moviePick->created_at}} => [<span class="highlight">{{ucfirst($moviePick->user->username)}}</span>  picked <span class="highlight">{{$moviePick->movie_title ? $moviePick->movie_title : 'CLASSIFIED'}}</span>] </span>
+                    </li>
+
+            @endforeach
+        </ul>
     </div>
 @endsection

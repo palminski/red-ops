@@ -1,8 +1,9 @@
 <nav>
     <ul>
         <li> <a href="/">Home</li></a>
-        <li> <a href="/data">Form Testing</a></li>
+        
         @if (Auth::check())
+        <li> <a href="/data">Movies</a></li>
         <li>
             <form action="{{route('logout')}}" method="post">
                 @csrf

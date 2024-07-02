@@ -6,6 +6,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieQueueController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,9 @@ Route::post('/add-user', [UserController::class, "addUser"])->name("add-user");
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/pick-movie', [MovieQueueController::class, 'pickMovie'])->name('movie.pick');
+
+    Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.index');
+    Route::post('/admin/update', [AdminController::class, 'update'])->name('admin.update');
 });
 
 

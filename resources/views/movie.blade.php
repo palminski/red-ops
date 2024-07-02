@@ -15,6 +15,9 @@
         
         <ul class="movie-queue">
             @foreach ($users as $user)
+            @if ($user->disabled)
+                @continue
+            @endif
                 @if ($user == Auth::user())
                     <li class="highlight">
                         

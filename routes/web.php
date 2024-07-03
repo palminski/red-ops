@@ -44,8 +44,12 @@ Route::post('/add-user', [UserController::class, "addUser"])->name("add-user");
 Route::middleware(['auth'])->group(function () {
     Route::post('/pick-movie', [MovieQueueController::class, 'pickMovie'])->name('movie.pick');
 
-    Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.index');
-    Route::post('/admin/update', [AdminController::class, 'update'])->name('admin.update');
+    Route::prefix('/admin')->middleware(['admin'])->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/show-user/{id}',[AdminController::class, 'showUser'])->name('admin.showUser');
+        Route::post('/update-user/{id}', [AdminController::class, 'updateUser'])->name('admin.updateUser');
+    });
+    
 });
 
 

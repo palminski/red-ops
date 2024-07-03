@@ -19,17 +19,22 @@ class adminController extends Controller
         ->with('users', $users);
     }
 
-    public function update(Request $request)
+    public function showUser($id)
     {
+        $user = User::findOrFail($id);
+        return view('admin.show-user')
+        ->with('user', $user);
+    }
+
+    public function updateUser(Request $request, string $id)
+    {
+        $request->input("disabled");
+        $user = User::findOrFail($id);
         
-        $usersToDisable = $request->input("disable");
-        $users = User::get();
-        foreach($users as $user)
-        {
-            $user->disabled = false;
-            if (isset($usersToDisable[$user->id])) $user->disabled = true;
-            $user->save();
-        }
-        return redirect()->route('admin.index');
+        $user->disabled = $request->input("disabled") ? true : false;
+            
+        $user->save();
+        
+        return redirect()->route('admin.showUser', ['id'=>$id]);
     }
 }

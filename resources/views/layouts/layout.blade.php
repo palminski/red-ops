@@ -16,8 +16,11 @@
 
 <body>
     @include('partials.navigation')
-    <br>
-    @yield('content')
+    
+    <div class="main-page-content">
+        @yield('content')
+    </div>
+    
 
 </body>
 

@@ -1,5 +1,5 @@
-<nav>
-    <ul>
+<nav class=" p-4">
+    <ul class="flex space-x-4">
         <li> <a href="/">Home</li></a>
         
         @if (Auth::check())

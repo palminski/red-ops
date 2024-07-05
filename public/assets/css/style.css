@@ -1,129 +1,120 @@
-@keyframes pulse {
-    0% {
-        background-color: #3c3c3c;
-    }
-    50% {
-        background-color: #582828;
-    }
-    100%{
-        background-color: #3c3c3c;
-    }
-}
 
-body {
-    font-family: "Space Mono", monospace;
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Libre+Barcode+39+Text&display=swap');
+@keyframes glitch-animation {
+      0% { transform: translate(0); }
+      100% { transform: translate(0); }
+    }
+@keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+.mt-custom {
+    margin-top: 20vh; /* Adjust the value as needed */
+  }
+
+.libre-barcode-39-text-regular {
+    font-family: "Libre Barcode 39 Text", system-ui;
     font-weight: 400;
     font-style: normal;
-    animation-name: pulse;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23ff0000' fill-opacity='0.71' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    margin: 0;
 }
 
-.main-page-content {
-    
-    margin: 20px;
-}
-
-input[type="text"] {
-    /* Specify the desired styles */
-    padding: 5px;
-    border-color: #aa3f3f;
-    color: #aa3f3f; /* Set the text color */
-    background-color: #000000; /* Set the background color */
-    font-weight: bold;
-}
-
-button {
-    padding: 5px;
-    color: #582727;
-    font-weight: bold;
-}
-
-a, a:hover, a:active, a:visited {color: #ffbaba;}
-.link-button {
-    background: none !important;
+.play-button {
+    width: 30px; /* Adjust the size as needed */
+    height: 30px; /* Adjust the size as needed */
+    background-color: transparent;
     border: none;
-    padding: 0 !important;
-
-    color: #ffbaba;
-    
+    font-size: 24px; /* Adjust the font size as needed */
+    line-height: 1; /* Ensure the text is centered vertically */
     cursor: pointer;
+    color: #7f1d1d; /* Set the color of the play symbol */
 }
 
-nav {
-    background-color: #292929;
-    padding: 10px 0px;
+
+/* User List */
+body {
+      background-color: #0f0f0f;
+      font-family: 'Inter', sans-serif;
+    }
+    .terminal {
+      background-color: #7f1d1d;
+      color: #7f1d1d; /* dark red text color */
+      padding: 20px;
+      border-radius: 20px;
+    }
+    .glitch-effect {
+      animation: glitch-animation 0.5s infinite;
+    }
+
+    .input-container {
+      display: none;
+    }
+    .input-container.show {
+      display: flex;
+      align-items: center;
+      animation: fadeIn 0.5s forwards;
+    }
+   
+    .enter-button {
+      background-color: #0f0f0f; /* lighter red */
+      color: #7f1d1d;
+      border: none;
+      padding: 8px 16px; /* added padding */
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .enter-button:hover {
+      background-color: #7f1d1d;
+      color: #0f0f0f
+    }
+    .text-entry {
+      background-color: #000; /* black background for text entry */
+      color: #7f1d1d; /* dark red text color */
+    }
+    .click-indicator {
+        width:25px;
+      height: 1;
+      border-radius: 5px; /* Adjust border-radius to control roundness */
+     
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px; /* Adjust font size as needed */
+      
+        
+    }
+
+    /* Fake Terminal */
+    .fake-terminal {
+        background-color: black;
+        color: #7f1d1d;
+        text-align: left;
+    }
+    .terminal-comment {
+        color: rgb(167, 78, 78);
+    }
+    
+    .terminal-highlight {
+        color: red !important;
+    }
+    .highlight {
+        font-weight: bold;
+        color: red !important;
+    }
+
+    /* Nav */
+    nav {
+      background-color: #7f1d1d;
+      color: #000000;
+      font-family: "Libre Barcode 39 Text", system-ui;
+      font-weight: 400;
+      font-style: normal;
+      font-size:xx-large;
+    }
+  
+  nav ul li:hover {
     color: #ffbaba;
-    filter: drop-shadow(0px 10px 3px rgb(255, 61, 61));
-}
-
-.block {
-    /* max-width: 800px; */
-    background-color: #292929;
-    text-align: left;
-    border-radius: 5px;
-    color: #ffbaba;
-    padding: 20px;
-    filter: drop-shadow(0px 5px 3px rgb(255, 61, 61));
-}
-
-.auth-form {
-    text-align: left;
-}
-
-nav ul {
-    padding: 10px 0;
-}
-ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-li {
-    padding: 15px;
-    text-decoration: none;
-} 
-.terminal {
-    background-color: black;
-    text-align: left;
-}
-.terminal-comment {
-    color: rgb(167, 78, 78);
-}
-
-.terminal-highlight {
-    color: red !important;
-}
-.highlight {
-    font-weight: bold;
-    color: red !important;
-}
-
-nav ul li form {
-    display: inline;
-}nav ul li {
-    display: inline;
-}
-li a {
-    text-decoration: none;
-}
-
-/* Movie List */
-.movie-queue {
-    text-align: left;
-}
-
-.movie-queue li {
-    padding: 25px;
-    background-color: rgb(49, 40, 40);
-}
-.movie-queue li:nth-child(odd) {
-    padding: 25px;
-    background-color: rgb(66, 53, 53);
-}
-
-li form {
-    padding: 0;
-}
+  }

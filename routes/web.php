@@ -28,7 +28,6 @@ Route::get('/signup', [AuthController::class, 'showSignupForm'])->name('signup')
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/movie-queue', [MovieQueueController::class, 'index'])->name('movie-queue');
-
     Route::get('/data', [DataController::class, 'showForm'])->name('show-form');
     Route::get('/show-data', [DataController::class, 'showData'])->name('show-data');
 });

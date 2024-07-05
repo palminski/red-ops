@@ -16,13 +16,17 @@
 </head>
 
 <body class="bg-black">
-    @include('partials.navigation')
-    @if (session('error-message'))
+
+    
+@include('partials.navigation')
+@if (session('error-message'))
             <h3 style="color: red">{{ session('error-message') }}</h3>
         @endif
     <div class="container mx-auto py-8  p-8">
         @yield('content')
     </div>
+        
+    
     
 
 </body>

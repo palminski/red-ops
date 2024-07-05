@@ -15,7 +15,10 @@ class MovieQueueController extends Controller
     public function index()
     {
 
-        $users = User::get();
+        $users = User::select('users.*')
+                 ->leftJoin(DB::raw('(SELECT user_id, MAX(created_at) as latest_movie_pick FROM movie_picks GROUP BY user_id) as latest_picks'), 'users.id' , '=', 'latest_picks.user_id')
+                 ->orderBy('latest_picks.latest_movie_pick', 'asc')
+                 ->get();
 
         $moviePicks = MoviePick::all()
                 ->sortByDesc('created_at');

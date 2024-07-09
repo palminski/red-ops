@@ -6,6 +6,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieQueueController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,6 @@ Route::get('/signup', [AuthController::class, 'showSignupForm'])->name('signup')
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/movie-queue', [MovieQueueController::class, 'index'])->name('movie-queue');
-
     Route::get('/data', [DataController::class, 'showForm'])->name('show-form');
     Route::get('/show-data', [DataController::class, 'showData'])->name('show-data');
 });
@@ -42,6 +42,13 @@ Route::post('/add-user', [UserController::class, "addUser"])->name("add-user");
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/pick-movie', [MovieQueueController::class, 'pickMovie'])->name('movie.pick');
+
+    Route::prefix('/admin')->middleware(['admin'])->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/show-user/{id}',[AdminController::class, 'showUser'])->name('admin.showUser');
+        Route::post('/update-user/{id}', [AdminController::class, 'updateUser'])->name('admin.updateUser');
+    });
+    
 });
 
 

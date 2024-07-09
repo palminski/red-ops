@@ -24,7 +24,7 @@ class UserController extends Controller
         $user->hashed_password = Hash::make($request->password);
         $user->save();
 
-        return redirect(route('home'));
+        return redirect(route('login'));
     }
 
     private function validateNewUser($requestInfo)

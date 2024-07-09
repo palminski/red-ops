@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\MoviePick;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -19,8 +20,6 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-
-
         $moviePicks = MoviePick::all()
                 ->sortByDesc('created_at');
 

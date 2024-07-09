@@ -6,15 +6,10 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
+use App\Models\MoviePick;
 
-class MoviePick extends Model
+class MovieRating extends Model
 {
-
-    protected $fillable = [
-        'uuid',
-        'user_id',
-        'movie_title'
-    ];
 
     public $incrementing = false;
 
@@ -23,15 +18,9 @@ class MoviePick extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function movieRatings()
+    public function movie()
     {
-        return $this->hasMany(MovieRating::class);
-    }
-
-    public function getAverageRating()
-    {
-        $rating = $this->movieRatings()->avg('rating');
-        return $rating ? number_format($rating, 2) : null;
+        return $this->belongsTo(MoviePick::class);
     }
 
     protected static function boot() {

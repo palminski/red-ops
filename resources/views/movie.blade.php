@@ -21,7 +21,7 @@
                         @csrf
                         <input type="hidden" name="userId" value={{ Auth::user()->id }}>
                         <li id="highlighted-name" class="pl-4 py-4 cursor-pointer bg-red-900 text-black transition duration-300 ease-in-out transform hover:scale-105 flex items-center glitch-effect" onclick="toggleInput(this)">
-                            <span class="block text-lg sm:text-xl mr-4">{{ ucfirst($user->username) }}</span>
+                            <span class="block text-lg sm:text-xl mr-4"><a href={{ route('users.show', ['id'=>$user->id]) }}>{{ ucfirst($user->username) }}</a> [{{$user->getAverageScore() ?? "No Score"}}]</span>
                             {{-- <div class="click-indicator ml-4 animate-pulse">
                                 <span>&#9758;</span> 
                             </div> --}}
@@ -30,12 +30,14 @@
                                 <input name="movieTitle" id="text-entry" type="text" class="text-entry w-60 px-3 py-1 rounded-lg  border-red-900 focus:outline-none focus:border-red-900 placeholder-red-900 placeholder-opacity-75 mr-2" placeholder="Movie Title">
                                 <button id="submit-button" class="play-button right-10 top-0 bottom-0 bg-black border-8 border-black rounded-3xl text-red-900">&#9658;</button>
                             </div> 
+
+                            
                         </li>
                     </form>
                 </li>
             @else
                 <li class="bg-black rounded-lg border-red-900 border-4 py-4 pl-4 cursor-pointer hover:bg-red-900 hover:text-black transition duration-300 ease-in-out transform hover:scale-105 flex items-center" onclick="toggleInput(this)">
-                    <span class="block text-lg sm:text-xl mr-4"> {{ ucfirst($user->username) }}</span>
+                    <span class="block text-lg sm:text-xl mr-4"> <a href={{ route('users.show', ['id'=>$user->id]) }}>{{ ucfirst($user->username) }} [{{$user->getAverageScore() ?? "No Score"}}]</a></span>
                 </li>
             @endif
         @endforeach
@@ -49,7 +51,7 @@
                 <li class="terminal-comment">// Red-Ops Terminal Injection</li>
                 @foreach ($moviePicks as $moviePick)
                         <li class="my-2">
-                            <span>{{$moviePick->created_at}} => [<span class="highlight">{{ucfirst($moviePick->user->username)}}</span>  picked <span class="highlight">{{$moviePick->movie_title ? $moviePick->movie_title : 'CLASSIFIED'}}</span>] </span>
+                            <span>{{$moviePick->created_at}} => [<span class="highlight"><a href={{ route('users.show', ['id'=>$moviePick->user->id]) }}>{{ ucfirst($moviePick->user->username) }}</a></span>  picked <span class="highlight"><a href={{ route('movies.show', ['id'=>$moviePick->id]) }}>{{$moviePick->movie_title ? $moviePick->movie_title : 'CLASSIFIED'}}</a></span>] {{$moviePick->getAverageRating()}} </span>
                         </li>
                 @endforeach
             </ul>

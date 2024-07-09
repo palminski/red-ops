@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\MovieQueueController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 
@@ -19,34 +19,34 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-//Get ======================================================
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::get('/signup', [AuthController::class, 'showSignupForm'])->name('signup');
 
 Route::middleware(['auth'])->group(function () {
-
-    Route::get('/movie-queue', [MovieQueueController::class, 'index'])->name('movie-queue');
+    Route::get('/movie-queue', [MovieController::class, 'index'])->name('movie-queue');
     Route::get('/data', [DataController::class, 'showForm'])->name('show-form');
     Route::get('/show-data', [DataController::class, 'showData'])->name('show-data');
 });
 
-//Post =====================================================
-
-Route::post('/clear-session', [DataController::class, 'clearSession'])->name('clear-session');
-
-Route::post('/submit-form', [DataController::class, 'handleSubmit'])->name('submit-form');
-
-Route::post('/add-user', [UserController::class, "addUser"])->name("add-user");
-
 Route::middleware(['auth'])->group(function () {
-    Route::post('/pick-movie', [MovieQueueController::class, 'pickMovie'])->name('movie.pick');
+    Route::post('/pick-movie', [MovieController::class, 'pickMovie'])->name('movie.pick');
 
     Route::prefix('/admin')->middleware(['admin'])->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/show-user/{id}',[AdminController::class, 'showUser'])->name('admin.showUser');
         Route::post('/update-user/{id}', [AdminController::class, 'updateUser'])->name('admin.updateUser');
+    });
+
+    Route::prefix('/users')->group(function () {
+        Route::get('/{id}', [UserController::class, 'show'])->name('users.show');
+    });
+
+    Route::prefix('/movies')->group(function () {
+        Route::get('/{id}', [MovieController::class, 'show'])->name('movies.show');
+        Route::post('/{id}/rate', [MovieController::class, 'rate'])->name('movies.rate');
     });
     
 });
@@ -56,3 +56,6 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //
+Route::post('/clear-session', [DataController::class, 'clearSession'])->name('clear-session');
+Route::post('/submit-form', [DataController::class, 'handleSubmit'])->name('submit-form');
+Route::post('/add-user', [UserController::class, "addUser"])->name("add-user");

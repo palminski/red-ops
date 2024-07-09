@@ -15,7 +15,5 @@
         <li> <a href={{route('login')}}>Log In</a></li>
         <li> <a href={{route('signup')}}>Sign Up</a></li>
         @endif
-        
-        {{-- <li><a href="https://palminski.github.io/myriad-conniptions/" target="_blank">My Portfolio</a></li> --}}
     </ul>
 </nav>

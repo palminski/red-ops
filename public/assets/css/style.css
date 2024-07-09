@@ -2,21 +2,23 @@
     0% {
         background-color: #3c3c3c;
     }
+
     50% {
         background-color: #582828;
     }
-    100%{
+
+    100% {
         background-color: #3c3c3c;
     }
 }
 
 body {
-    
+
     /* background-color: #3c3c3c; */
     font-family: "Space Mono", monospace;
-  font-weight: 400;
-  font-style: normal;
-    
+    font-weight: 400;
+    font-style: normal;
+
     animation-name: pulse;
     animation-duration: 3s;
     animation-iteration-count: infinite;
@@ -28,9 +30,12 @@ input[type="text"] {
     /* Specify the desired styles */
     padding: 5px;
     border-color: #aa3f3f;
-    color: #aa3f3f; /* Set the text color */
-    background-color: #000000; /* Set the background color */
+    color: #aa3f3f;
+    /* Set the text color */
+    background-color: #000000;
+    /* Set the background color */
     font-weight: bold;
+
 }
 
 button {
@@ -39,16 +44,14 @@ button {
     font-weight: bold;
 }
 
-a, a:hover, a:active, a:visited {color: #ffbaba;}
-.link-button {
-    background: none !important;
-    border: none;
-    padding: 0 !important;
-
+a,
+a:hover,
+a:active,
+a:visited {
     color: #ffbaba;
-    
-    cursor: pointer;
 }
+
+
 
 nav {
     background-color: #292929;
@@ -75,19 +78,23 @@ nav {
 nav ul {
     padding: 10px 0;
 }
+
 ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
+
 li {
     padding: 15px;
     text-decoration: none;
-} 
+}
+
 .terminal {
     background-color: black;
     text-align: left;
 }
+
 .terminal-comment {
     color: rgb(167, 78, 78);
 }
@@ -95,6 +102,7 @@ li {
 .terminal-highlight {
     color: red !important;
 }
+
 .highlight {
     font-weight: bold;
     color: red !important;
@@ -102,11 +110,27 @@ li {
 
 nav ul li form {
     display: inline;
-}nav ul li {
+}
+
+nav ul li {
     display: inline;
 }
+
 li a {
     text-decoration: none;
+    font-size: medium;
+}
+
+.link-button {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    color: hsl(0, 100%, 86%);
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: normal;
+    font-family: "Space Mono", monospace;
+    font-size: medium;
 }
 
 /* Movie List */
@@ -118,6 +142,7 @@ li a {
     padding: 25px;
     background-color: rgb(49, 40, 40);
 }
+
 .movie-queue li:nth-child(odd) {
     padding: 25px;
     background-color: rgb(66, 53, 53);

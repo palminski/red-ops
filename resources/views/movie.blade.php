@@ -8,7 +8,7 @@
 
 
 <div class="container mx-auto py-8">
-    <h1 class="text-6xl libre-barcode-39-text-regular mb-8 text-center text-red-900 animate-pulse">Queue</h1>
+    <h1 class="text-6xl libre-barcode-39-text-regular mb-8 text-center text-red-900 animate-pulse">Movie Queue</h1>
     <div class="uppercase terminal mx-auto" style="max-width: 600px;">
       <ul>
         @foreach ($users as $user)

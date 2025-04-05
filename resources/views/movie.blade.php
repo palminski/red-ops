@@ -5,82 +5,64 @@
 @endsection
 
 @section('content')
+    <section class="border-2 p-2 border-red-600 border-l-red-400 border-t-red-400 max-w-4xl bg-zinc-900 mb-8">
+        <h1 class="text-xl font-bold p-1  bg-red-800">Current Queue</h1>
+        <div class="text-red-300 p-1">
+            <ul>
+                @foreach ($users as $user)
+                    <li class="flex justify-between">
+                        <div>
+                            {{ $loop->index + 1 }} - <a
+                                href={{ route('users.show', ['id' => $user->id]) }}>{{ ucfirst($user->username) }}</a>
+                        </div>
+                        <div>
+                            {{ $user->getAverageScore() ?? 'No Score' }} Average Rating
+                        </div>
 
 
-<div class="container mx-auto py-8">
-    <h1 class="text-6xl libre-barcode-39-text-regular mb-8 text-center text-red-900 animate-pulse">Movie Queue</h1>
-    <div class="uppercase terminal mx-auto" style="max-width: 600px;">
-      <ul>
-        @foreach ($users as $user)
-            @if ($user->disabled)
-                @continue
-            @endif
-            @if ($user == Auth::user())
-                <li class="highlight">
-                    <form method="POST" action={{ route('movie.pick') }}>
-                        @csrf
-                        <input type="hidden" name="userId" value={{ Auth::user()->id }}>
-                        <li id="highlighted-name" class="pl-4 py-4 cursor-pointer bg-red-900 text-black transition duration-300 ease-in-out transform hover:scale-105 flex items-center glitch-effect" onclick="toggleInput(this)">
-                            <span class="block text-lg sm:text-xl mr-4"><a href={{ route('users.show', ['id'=>$user->id]) }}>{{ ucfirst($user->username) }}</a> [{{$user->getAverageScore() ?? "No Score"}}]</span>
-                            {{-- <div class="click-indicator ml-4 animate-pulse">
-                                <span>&#9758;</span> 
-                            </div> --}}
-                            
-                            <div id="input-container" class="input-container ml-8 flex relative">
-                                <input name="movieTitle" id="text-entry" type="text" class="text-entry w-60 px-3 py-1 rounded-lg  border-red-900 focus:outline-none focus:border-red-900 placeholder-red-900 placeholder-opacity-75 mr-2" placeholder="Movie Title">
-                                <button id="submit-button" class="play-button right-10 top-0 bottom-0 bg-black border-8 border-black rounded-3xl text-red-900">&#9658;</button>
-                            </div> 
-
-                            
-                        </li>
-                    </form>
-                </li>
-            @else
-                <li class="bg-black rounded-lg border-red-900 border-4 py-4 pl-4 cursor-pointer hover:bg-red-900 hover:text-black transition duration-300 ease-in-out transform hover:scale-105 flex items-center" onclick="toggleInput(this)">
-                    <span class="block text-lg sm:text-xl mr-4"> <a href={{ route('users.show', ['id'=>$user->id]) }}>{{ ucfirst($user->username) }} [{{$user->getAverageScore() ?? "No Score"}}]</a></span>
-                </li>
-            @endif
-        @endforeach
-      </ul>
-    </div>
-  </div>
-  <br>
-    <div class="block container mx-auto py-8">
-        <div class=" mx-auto" style="max-width: 600px;">
-            <ul class="fake-terminal">
-                <li class="terminal-comment">// Red-Ops Terminal Injection</li>
-                @foreach ($moviePicks as $moviePick)
-                        <li class="my-2">
-                            <span>{{$moviePick->created_at}} => [<span class="highlight"><a href={{ route('users.show', ['id'=>$moviePick->user->id]) }}>{{ ucfirst($moviePick->user->username) }}</a></span>  picked <span class="highlight"><a href={{ route('movies.show', ['id'=>$moviePick->id]) }}>{{$moviePick->movie_title ? $moviePick->movie_title : 'CLASSIFIED'}}</a></span>] {{$moviePick->getAverageRating()}} </span>
-                        </li>
+                    </li>
                 @endforeach
             </ul>
-            
         </div>
-        
-    </div>
+    </section>
+
+    <section class="border-2 border-red-600 border-l-red-400 border-t-red-400 max-w-4xl bg-zinc-900 mb-8">
+        <h1 class="text-xl font-bold p-1 border-b-2 border-red-400 bg-red-800">Log Movie - {{ Auth::user()->username }}</h1>
+        <div>
+            <form method="POST" action={{ route('movie.pick') }} class="p-2 flex justify-between">
+                @csrf
+                <input type="hidden" name="userId" value={{ Auth::user()->id }}>
+
+                <input name="movieTitle" id="text-entry" type="text"
+                    class="text-entry text-red-400  px-3 py-1 bg-black border-2 border-red-900 focus:outline-none focus:border-red-900 placeholder-red-900 placeholder-opacity-75 mr-2"
+                    placeholder="Movie Title">
+
+
+
+                <button id="submit-button"
+                    class="play-button right-10 top-0 bottom-0 px-3 py-1 font-bold border-2 bg-red-950 border-red-900 text-red-300 ">Log</button>
+
+
+
+            </form>
+        </div>
+    </section>
+
+    <section class="border-2 border-red-600 border-l-red-400 border-t-red-400 max-w-4xl bg-zinc-900">
+        <h1 class="text-xl font-bold p-1 border-b-2 border-red-400 bg-red-800">Movie Log</h1>
+        <ul class="text-red-300 p-1">
+            @foreach ($moviePicks as $moviePick)
+                <li class="my-2">
+                    <span>{{ $moviePick->created_at }} => [<span class="highlight"><a
+                                href={{ route('users.show', ['id' => $moviePick->user->id]) }}>{{ ucfirst($moviePick->user->username) }}</a></span>
+                        picked <span class="highlight"><a
+                                href={{ route('movies.show', ['id' => $moviePick->id]) }}>{{ $moviePick->movie_title ? $moviePick->movie_title : 'CLASSIFIED' }}</a></span>]
+                        {{ $moviePick->getAverageRating() }} </span>
+                </li>
+            @endforeach
+        </ul>
+    </section>
+
 
     
-
-  <!-- Custom JavaScript for toggling input container -->
-  <script>
-    function toggleInput(element) {
-      // Toggle input container
-      var inputContainer = element.querySelector('.input-container');
-      inputContainer.classList.toggle('show');
-      
-      // Highlight the selected name
-      document.querySelectorAll('.py-4').forEach(item => {
-        item.classList.remove('bg-red-900', 'text-black', 'glitch-effect');
-      });
-      element.classList.add('bg-red-900', 'text-black', 'glitch-effect');
-    }
-    
-    // Prevent input container from closing when clicked
-    document.getElementById('input-container').addEventListener('click', function(event) {
-      event.stopPropagation();
-    });
-    
-    
-  </script>
 @endsection

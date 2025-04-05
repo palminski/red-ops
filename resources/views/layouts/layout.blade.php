@@ -12,18 +12,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
-        @vite('resources/css/app.css')
+    @vite('resources/css/app.css')
+    @vite(['resources/js/app.js'])
 </head>
 
 <body class="bg-black">
     @include('partials.navigation')
     @if (session('error-message'))
-            <h3 style="color: red">{{ session('error-message') }}</h3>
-        @endif
-    <div class="container mx-auto py-8  p-8">
+        <h3 style="color: red">{{ session('error-message') }}</h3>
+    @endif
+    <div class="py-8  p-8">
         @yield('content')
     </div>
-    
+
 
 </body>
 

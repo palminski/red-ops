@@ -10,111 +10,12 @@
         to { opacity: 1; transform: translateY(0); }
       }
 
-.mt-custom {
-    margin-top: 20vh; /* Adjust the value as needed */
-  }
 
-.libre-barcode-39-text-regular {
-    font-family: "Libre Barcode 39 Text", system-ui;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.play-button {
-    width: 30px; /* Adjust the size as needed */
-    height: 30px; /* Adjust the size as needed */
-    background-color: transparent;
-    border: none;
-    font-size: 24px; /* Adjust the font size as needed */
-    line-height: 1; /* Ensure the text is centered vertically */
-    cursor: pointer;
-    color: #7f1d1d; /* Set the color of the play symbol */
-}
-
-
-/* User List */
-body {
-      background-color: #0f0f0f;
-      font-family: 'Inter', sans-serif;
-    }
-    .terminal {
-      background-color: #7f1d1d;
-      color: #7f1d1d; /* dark red text color */
-      padding: 20px;
-      border-radius: 20px;
-    }
-    .glitch-effect {
-      animation: glitch-animation 0.5s infinite;
-    }
-
-    .input-container {
-      display: none;
-    }
-    .input-container.show {
-      display: flex;
-      align-items: center;
-      animation: fadeIn 0.5s forwards;
-    }
-   
-    .enter-button {
-      background-color: #0f0f0f; /* lighter red */
-      color: #7f1d1d;
-      border: none;
-      padding: 8px 16px; /* added padding */
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .enter-button:hover {
-      background-color: #7f1d1d;
-      color: #0f0f0f
-    }
-    .text-entry {
-      background-color: #000; /* black background for text entry */
-      color: #7f1d1d; /* dark red text color */
-    }
-    .click-indicator {
-        width:25px;
-      height: 1;
-      border-radius: 5px; /* Adjust border-radius to control roundness */
-     
-      color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 36px; /* Adjust font size as needed */
-      
-        
-    }
-
-    /* Fake Terminal */
-    .fake-terminal {
-        background-color: black;
-        color: #7f1d1d;
-        text-align: left;
-    }
-    .terminal-comment {
-        color: rgb(167, 78, 78);
-    }
-    
-    .terminal-highlight {
-        color: red !important;
-    }
-    .highlight {
-        font-weight: bold;
-        color: red !important;
-    }
 
     /* Nav */
-    nav {
-      background-color: #7f1d1d;
-      color: #000000;
+    .font-barcode {
       font-family: "Libre Barcode 39 Text", system-ui;
       font-weight: 400;
       font-style: normal;
       font-size:xx-large;
     }
-  
-  nav ul li:hover {
-    color: #ffbaba;
-  }

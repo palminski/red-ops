@@ -22,13 +22,13 @@
 
     <section>
         <nav class="flex justify-between px-4 py-2 bg-black border-b border-red-900/40 items-center ">
-            <div class="text-redops-red-bright text-6xl font-vt323">
+            <div class="text-redops-red-bright text-6xl font-vt323 ">
                 <a href="/">
                     REDOPS
                 </a>
                 
             </div>
-            <div class="text-redops-red-bright font-bold text-xl">
+            <div class="text-redops-red-bright font-bold text-xl animate-pulse">
                 SECURE
             </div>
         </nav>

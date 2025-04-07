@@ -13,8 +13,12 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+        
+        $moviePicks = $user->moviePicks;
+
         return view('users.show')
-        ->with('user', $user);
+        ->with('user', $user)
+        ->with('moviePicks', $moviePicks);
     }
 
     public function addUser(Request $request)

@@ -13,10 +13,13 @@
                 <div class="p-1">
                     <ul class="bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 ">
                         @foreach ($users as $user)
-                            <li class="flex justify-between">
+                            <li class="flex justify-between @if($loop->first) bg-red-300 @endif">
                                 <div>
                                     {{ $loop->index + 1 }} - <a class="underline"
                                         href={{ route('users.show', ['id' => $user->id]) }}>{{ $user->username }}</a>
+                                        @if($loop->first)
+                                            [next]
+                                        @endif
                                 </div>
                                 <div>
                                     {{ $user->getAverageScore() ?? 'No Score' }} Average Rating

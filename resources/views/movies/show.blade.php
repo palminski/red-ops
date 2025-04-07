@@ -1,40 +1,65 @@
-@extends('layouts.layout')
+@extends('layouts.dark')
 
 @section('title')
     Movie
 @endsection
 
 @section('content')
-    {{-- @dd($movie) --}}
-    <h1 class="text-6xl libre-barcode-39-text-regular mb-8 text-center text-red-600 animate-pulse">{{$movie->movie_title ?? "CLASIFIED"}}</h1>
-    <hr class="border-red-600 animate-pulse">
-    <div class="text-red-600 animate-pulse text-2xl pt-6">
-        <div class="text-center">
-            Picked On <span class="text-red-400">[{{$movie->created_at}}]</span> by agent <span class="text-red-400"> <a href={{ route('users.show', ['id'=>$movie->user->id]) }}> [{{$movie->user->username}}] </a></span>
-        </div>
-        
-    </div>
-
-    <div class="text-red-600 animate-pulse  py-6">
-        <div class="text-center">
-            <div class="text-center text-2xl">
-                Average Rating: <span class="text-red-400">[{{$movie->getAverageRating() ?? "Not Rated"}}]</span>
+    <main class="max-w-xl  lg:p mx-auto">
+        {{-- Current Queue --}}
+        <section class=" p-2 max-w-[550px]">
+            <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
+                <h1 class="bg-redops-red-bright m-1 px-1">movie_info_{{ $movie->movie_title ?? 'CLASIFIED' }}</h1>
+                <div class="p-1">
+                    <div>
+                        Picked On <span class="">[{{ $movie->created_at->format('Y-m-d') }}]</span> by agent <span
+                            class="underline"> <a href={{ route('users.show', ['id' => $movie->user->id]) }}>
+                                {{ $movie->user->username }} </a></span>
+                    </div>
+                    <div>
+                        Average Rating: <span class="">[{{ $movie->getAverageRating() ?? 'Not Rated' }}]
+                    </div>
+                    <form method="POST" action={{ route('movies.rate', ['id' => $movie->id]) }}
+                        class="p-1 flex flex-col justify-between">
+                        @csrf
+                        <input type="hidden" name="userId" value={{ Auth::user()->id }}>
+                        <div
+                            class="bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 space-y-2">
+                            <div>
+                                <label for="movieTitle">Your Rating For {{ $movie->movie_title ?? 'CLASIFIED' }}:</label>
+                                <input type="number" name="rating" id="rating" min="0" max="5"
+                                    step="0.5"
+                                    value={{ $movie->movieRatings->firstWhere('user_id', Auth::user()->id)->rating ?? '0' }}
+                                    required class="w-full border border-zinc-700 px-1">
+                            </div>
+                            <button id="submit-button"
+                                class="bg-zinc-900 text-white px-2 border border-zinc-300 ">Log</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            @forEach($movie->movieRatings as $rating)
-                Rated <span class="text-red-400">[{{$rating->rating}}]</span> by agent <span class="text-red-400"> <a href={{ route('users.show', ['id'=>$movie->user->id]) }}> [{{$rating->user->username}}] </a></span>
-            @endforeach
-        </div>
-    </div>
-    <hr class="border-red-600 animate-pulse">
-    <div class="text-red-600 animate-pulse text-2xl pt-6">
-        <div class="text-center">
-            <form method="POST" action={{ route('movies.rate', ['id'=>$movie->id]) }}>
-                @csrf
-                <label for="rating">Rate: </label>
-                <input type="number" name="rating" id="rating" min="0" max="5" step="0.5" class="border-2 border-red-600 bg-black" value={{$movie->movieRatings->firstWhere('user_id', Auth::user()->id)->rating ?? "0"}} required>
-                <button class="border-2 border-red-600 px-4">Submit</button>
-            </form>
-        </div>
-    </div>
+        </section>
 
+        <section class=" p-2 max-w-[550px]">
+            <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
+                <h1 class="bg-redops-red-bright m-1 px-1">user_ratings</h1>
+                <div class="p-1">
+                    <div>
+                        <ul
+                            class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300">
+                            @foreach ($movie->movieRatings as $rating)
+                                <li class="my-2">
+                                    [<a class="underline" href={{ route('users.show', ['id' => $movie->user->id]) }}>
+                                        {{ $rating->user->username }} </a>] rated movie <span
+                                        class="text-red-400">[{{ $rating->rating }}]</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   
 @endsection

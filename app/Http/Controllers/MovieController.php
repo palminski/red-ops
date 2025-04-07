@@ -16,7 +16,7 @@ class MovieController extends Controller
 
     public function index()
     {
-        $users = User::select('users.*')
+        $users = User::select('users.*')->where('disabled', false)
                  ->leftJoin(DB::raw('(SELECT user_id, MAX(created_at) as latest_movie_pick FROM movie_picks GROUP BY user_id) as latest_picks'), 'users.id' , '=', 'latest_picks.user_id')
                  ->orderBy('latest_picks.latest_movie_pick', 'asc')
                  ->get();

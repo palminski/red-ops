@@ -19,6 +19,9 @@ export default {
           bright:'#860f0f',
           dark:'#344347',
         },
+        'window': {
+          bright: '#c2c0ba',
+        }
       },
     },
   },

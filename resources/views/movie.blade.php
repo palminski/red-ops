@@ -1,68 +1,79 @@
-@extends('layouts.dark-with-nav')
+@extends('layouts.dark')
 
 @section('title')
     Movies
 @endsection
 
 @section('content')
-    <section class="border-2 p-2 border-red-600 border-l-red-400 border-t-red-400 max-w-4xl bg-zinc-900 mb-8">
-        <h1 class="text-xl font-bold p-1  bg-red-800">Current Queue</h1>
-        <div class="text-red-300 p-1">
-            <ul>
-                @foreach ($users as $user)
-                    <li class="flex justify-between">
+    <main class="max-w-xl  lg:p mx-auto">
+        {{-- Current Queue --}}
+        <section class=" p-2 max-w-[550px]">
+            <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
+                <h1 class="bg-redops-red-bright m-1 px-1">current_queue</h1>
+                <div class="p-1">
+                    <ul class="bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 ">
+                        @foreach ($users as $user)
+                            <li class="flex justify-between">
+                                <div>
+                                    {{ $loop->index + 1 }} - <a class="underline"
+                                        href={{ route('users.show', ['id' => $user->id]) }}>{{ $user->username }}</a>
+                                </div>
+                                <div>
+                                    {{ $user->getAverageScore() ?? 'No Score' }} Average Rating
+                                </div>
+
+
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class=" p-2 max-w-[550px]">
+            <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
+                <h1 class="bg-redops-red-bright m-1 px-1">log_movie_{{ Auth::user()->username }}</h1>
+
+                <form method="POST" action={{ route('movie.pick') }} class="p-1 flex flex-col justify-between">
+                    @csrf
+                    <input type="hidden" name="userId" value={{ Auth::user()->id }}>
+                    <div
+                        class="bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 space-y-2">
                         <div>
-                            {{ $loop->index + 1 }} - <a
-                                href={{ route('users.show', ['id' => $user->id]) }}>{{ ucfirst($user->username) }}</a>
+                            <label for="movieTitle">Movie:</label>
+                            <input id="movieTitle" name="movieTitle" type="text"
+                                class="w-full border border-zinc-700 px-1" placeholder= "movie title">
                         </div>
-                        <div>
-                            {{ $user->getAverageScore() ?? 'No Score' }} Average Rating
-                        </div>
+                        <button id="submit-button" class="bg-zinc-900 text-white px-2 border border-zinc-300 ">Log</button>
+                    </div>
+                </form>
+            </div>
+        </section>
 
-
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    </section>
-
-    <section class="border-2 border-red-600 border-l-red-400 border-t-red-400 max-w-4xl bg-zinc-900 mb-8">
-        <h1 class="text-xl font-bold p-1 border-b-2 border-red-400 bg-red-800">Log Movie - {{ Auth::user()->username }}</h1>
-        <div>
-            <form method="POST" action={{ route('movie.pick') }} class="p-2 flex justify-between">
-                @csrf
-                <input type="hidden" name="userId" value={{ Auth::user()->id }}>
-
-                <input name="movieTitle" id="text-entry" type="text"
-                    class="text-entry text-red-400  px-3 py-1 bg-black border-2 border-red-900 focus:outline-none focus:border-red-900 placeholder-red-900 placeholder-opacity-75 mr-2"
-                    placeholder="Movie Title">
-
-
-
-                <button id="submit-button"
-                    class="play-button right-10 top-0 bottom-0 px-3 py-1 font-bold border-2 bg-red-950 border-red-900 text-red-300 ">Log</button>
-
-
-
-            </form>
-        </div>
-    </section>
-
-    <section class="border-2 border-red-600 border-l-red-400 border-t-red-400 max-w-4xl bg-zinc-900">
-        <h1 class="text-xl font-bold p-1 border-b-2 border-red-400 bg-red-800">Movie Log</h1>
-        <ul class="text-red-300 p-1">
-            @foreach ($moviePicks as $moviePick)
-                <li class="my-2">
-                    <span>{{ $moviePick->created_at }} => [<span class="highlight"><a
-                                href={{ route('users.show', ['id' => $moviePick->user->id]) }}>{{ ucfirst($moviePick->user->username) }}</a></span>
-                        picked <span class="highlight"><a
-                                href={{ route('movies.show', ['id' => $moviePick->id]) }}>{{ $moviePick->movie_title ? $moviePick->movie_title : 'CLASSIFIED' }}</a></span>]
-                        {{ $moviePick->getAverageRating() }} </span>
-                </li>
-            @endforeach
-        </ul>
-    </section>
-
-
-    
+        <section class=" p-2 max-w-[550px]">
+            <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
+                <h1 class="bg-redops-red-bright m-1 px-1">movie_log</h1>
+                <div class="p-1">
+                    <ul
+                        class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300">
+                        @foreach ($moviePicks as $moviePick)
+                            <li class="my-2">
+                                <span>
+                                    [{{ $moviePick->created_at->format('Y-m-d') }}]
+                                    <a class="underline text-red-400 hover:text-red-500"
+                                        href={{ route('users.show', ['id' => $moviePick->user->id]) }}>{{ ucfirst($moviePick->user->username) }}</a>
+                                    =>
+                                    <a class="underline text-red-400 hover:text-red-500"
+                                        href={{ route('movies.show', ['id' => $moviePick->id]) }}>{{ $moviePick->movie_title ? $moviePick->movie_title : 'CLASSIFIED' }}</a>
+                                    -
+                                    <a class="text-red-600" href={{ route('movies.show', ['id' => $moviePick->id]) }}>
+                                        ({{ $moviePick->getAverageRating() }})
+                                    </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
 @endsection

@@ -16,36 +16,53 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body class="bg-black flex flex-col min-h-svh justify-between bg-cover bg-center bg-no-repeat" style="background-image: url({{ asset('assets/images/RedOpsMap.svg')}})">
+<body class="bg-black flex flex-col min-h-svh justify-between bg-cover bg-center bg-no-repeat"
+    style="background-image: url({{ asset('assets/images/RedOpsMap.svg') }})">
 
 
     <section>
-        <nav class="flex justify-between p-4 bg-black border-b border-red-900/40 items-center font-vt323">
-            <div class="text-redops-red-bright text-6xl font-">
-                REDOPS
+        <nav class="flex justify-between px-4 py-2 bg-black border-b border-red-900/40 items-center ">
+            <div class="text-redops-red-bright text-6xl font-vt323">
+                <a href="/">
+                    REDOPS
+                </a>
+                
             </div>
-            <div class="text-redops-red-bright text-4xl">
+            <div class="text-redops-red-bright font-bold text-xl">
                 SECURE
             </div>
         </nav>
         @if (session('error-message'))
             <h3 style="color: red">{{ session('error-message') }}</h3>
         @endif
-    
-    
+
+
         <div class="">
             @yield('content')
         </div>
     </section>
-    
+
 
     <footer class="flex justify-between p-4 bg-black border-t border-red-900/40 items-center">
-        <div class="text-redops-red-bright lg:text-2xl">
-            CLASSIFIED SYSTEMS
+        
+        @if (Auth::user())
+            <div class="text-redops-red-bright lg:text-2xl uppercase">
+                {{Auth::user()->username}} Authenticated
+            </div>
+            <div class="text-redops-red-bright lg:text-2xl uppercase">
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button class="link-button" type="submit">Log Out</button>
+                </form>
+            </div>
+        @else
+        <div class="text-redops-red-bright lg:text-2xl uppercase">
+            No User Authenticated
         </div>
         <div class="text-redops-red-bright lg:text-2xl">
-            ENCRYPTION ACTIVE
+            {{-- CLASSIFIED SYSTEMS --}}
         </div>
+        @endif
     </footer>
 
 

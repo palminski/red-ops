@@ -9,14 +9,14 @@ class AuthController extends Controller
 {
     public function showLoginForm() {
         if (Auth::user()) {
-            return redirect()->route('movie-queue');
+            return redirect()->route('home');
         }
         return view('auth.login');
     }
 
     public function showSignupForm() {
         if (Auth::user()) {
-            return redirect()->route('movie-queue');
+            return redirect()->route('home');
         }
         return view('auth.signup');
     }
@@ -31,7 +31,7 @@ class AuthController extends Controller
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('movie-queue');
+            return redirect()->route('home');
         }
 
         return back()->withErrors([

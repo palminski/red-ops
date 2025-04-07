@@ -8,8 +8,9 @@
     {{-- Pages --}}
     <section class="flex flex-wrap max-w-xl mx-auto">
         @if (Auth::check())
-            <a href={{ route('movie-queue') }} class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
-                <img class="p-6" src="{{ asset("/assets/images/VideoTap.svg") }}" alt="">
+            <a href={{ route('movie-queue') }}
+                class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
+                <img class="p-6" src="{{ asset('/assets/images/VideoTap.svg') }}" alt="">
                 <h1 class="font-bold text-4xl">Movies</h1>
             </a>
             {{-- <a href={{ route('movie-queue') }} class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
@@ -20,9 +21,17 @@
                 <img class="p-6" src="{{ asset("/assets/images/Top Secret.svg") }}" alt="">
                 <h1 class="font-bold text-4xl">Dominion</h1>
             </a> --}}
+            @if (Auth::user()->admin)
+                <a href={{ route('admin.index') }}
+                    class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
+                    <img class="p-6" src="{{ asset('/assets/images/Top Secret.svg') }}" alt="">
+                    <h1 class="font-bold text-4xl">Admin</h1>
+                </a>
+            @endif
         @else
-            <a href={{ route('login') }} class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
-                <img class="p-6" src="{{ asset("/assets/images/Top Secret.svg") }}" alt="">
+            <a href={{ route('login') }}
+                class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
+                <img class="p-6" src="{{ asset('/assets/images/Top Secret.svg') }}" alt="">
                 <h1 class="font-bold text-4xl">Authenticate</h1>
             </a>
         @endif

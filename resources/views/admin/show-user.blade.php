@@ -1,35 +1,42 @@
-@extends('layouts.layout')
+@extends('layouts.dark')
 
 @section('title')
     Admin Settings
 @endsection
 
 @section('content')
-    
-    <h1 class="text-6xl libre-barcode-39-text-regular mb-8 text-center text-red-600 animate-pulse">{{$user->username}}</h1>
-    <br>
-    <div class="block bg-red-900 rounded p-4">
-        <form action={{ route('admin.updateUser', ['id' => $user->id]) }} method="post" class="flex flex-col space-y-3">
-            {{ csrf_field() }}
-            <div class="text-2xl">ADMIN SETTINGS</div>
-            <div>
-                <label for="disabled-input">Disabled?</label>
-                <input id="disabled-input" type="checkbox" name="disabled" value={{true}} @if ($user->disabled) checked @endif>
-            </div>
-            
-            <div>
-                <label for="username-reset">Username: </label>
-                <input id="username-reset" type="text" name="username_reset" value={{$user->username}}>
-            </div>
-            
-            <div>
-                <label for="password-reset">Password: </label>
-                <input id="password-reset" type="password" name="password_reset">
-            </div>
-            
-            
-            <button type="submit" class="bg-red-700 hover:bg-red-600 px-4 py-2 rounded-lg">Submit</button>
+    <main class="max-w-xl  lg:p mx-auto">
 
-        </form>
-    </div>
+
+        <section class=" p-2 max-w-[550px]">
+            <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
+                <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">admin_settings_{{ $user->username }}</h1>
+                <form action={{ route('admin.updateUser', ['id' => $user->id]) }} method="post" class="p-1 flex flex-col justify-between">
+                    @csrf
+                    <div
+                        class="bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 space-y-2">
+                        <div>
+                            <label for="disabled-input">Disabled?</label>
+                            <input id="disabled-input" type="checkbox" name="disabled" value={{ true }}
+                                @if ($user->disabled) checked @endif>
+                        </div>
+
+                        <div>
+                            <label for="username-reset">Username: </label>
+                            <input class="w-full border border-zinc-700 px-1" id="username-reset" type="text" name="username_reset" value={{ $user->username }}>
+                        </div>
+            
+                        <div>
+                            <label for="password-reset">Password: </label>
+                            <input class="w-full border border-zinc-700 px-1" id="password-reset" type="password" name="password_reset">
+                        </div>
+
+                        <button id="submit-button" class="bg-zinc-900 text-white px-2 border border-zinc-300 ">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+
 @endsection

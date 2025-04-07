@@ -12,14 +12,14 @@
                 <img class="p-6" src="{{ asset("/assets/images/VideoTap.svg") }}" alt="">
                 <h1 class="font-bold text-4xl">Movies</h1>
             </a>
-            <a href={{ route('movie-queue') }} class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
+            {{-- <a href={{ route('movie-queue') }} class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
                 <img class="p-6" src="{{ asset("/assets/images/Top Secret.svg") }}" alt="">
                 <h1 class="font-bold text-4xl">Briefing</h1>
             </a>
             <a href={{ route('movie-queue') }} class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
                 <img class="p-6" src="{{ asset("/assets/images/Top Secret.svg") }}" alt="">
                 <h1 class="font-bold text-4xl">Dominion</h1>
-            </a>
+            </a> --}}
         @else
             <a href={{ route('login') }} class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
                 <img class="p-6" src="{{ asset("/assets/images/Top Secret.svg") }}" alt="">

@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('/users')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('users.index');
         Route::get('/{id}', [UserController::class, 'show'])->name('users.show');
     });
 

@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $users = User::get();
+        return view('users.index')
+        ->with('users', $users);
+    }
     public function show($id)
     {
         $user = User::findOrFail($id);

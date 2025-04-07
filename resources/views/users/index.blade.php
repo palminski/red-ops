@@ -1,7 +1,7 @@
 @extends('layouts.dark')
 
 @section('title')
-    Admin Settings
+    Users
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
                     <ul>
                         @foreach ($users as $user)
                             <li class="flex justify-between">
-                                <a class="underline" href={{ route('admin.showUser', ['id' => $user->id]) }}>
+                                <a class="underline" href={{ route('users.show', ['id' => $user->id]) }}>
                                     {{ ucfirst($user->username) }}
                                 </a>
                             </li>

@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 use App\Models\MoviePick;
 use App\Models\movieRating;
+use App\Models\Achievement;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -65,5 +66,10 @@ class User extends Authenticatable
                 $model->{$model->getKeyName()} = Str::uuid()->toString();
             }
         });
+    }
+
+    public function achievements()
+    {
+        return $this->belongsToMany(Achievement::class);
     }
 }

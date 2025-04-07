@@ -1,4 +1,4 @@
-<nav class="relative z-50 p-4"  x-data="{ open: false }">
+<nav class="relative z-50 p-4" x-data="{ open: false }">
     <section class="hidden  lg:flex justify-between bg-red-800">
         <a href="/">
             <h1 class="text-5xl">RED OPs</h1>

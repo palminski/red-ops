@@ -6,7 +6,21 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        vt323: ["VT323", "sans-serif"],
+        fakeWindows: ["FakeWindows", "sans-serif"],
+      },
+      backgroundImage: {
+        'world-map': "url(/assets/images/RedOpsMap.svg)"
+      },
+      colors: {
+        'redops-red': {
+          bright:'#860f0f',
+          dark:'#344347',
+        },
+      },
+    },
   },
   plugins: [],
 }

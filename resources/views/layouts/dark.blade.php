@@ -12,20 +12,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
-        @vite('resources/css/app.css')
-        @vite(['resources/js/app.js'])
+    @vite('resources/css/app.css')
+    @vite(['resources/js/app.js'])
 </head>
 
-<body class="bg-black">
-    @if (session('error-message'))
+<body class="bg-black flex flex-col min-h-svh justify-between bg-cover bg-center bg-no-repeat" style="background-image: url({{ asset('assets/images/RedOpsMap.svg')}})">
+
+
+    <section>
+        <nav class="flex justify-between p-4 bg-black border-b border-red-900/40 items-center font-vt323">
+            <div class="text-redops-red-bright text-6xl font-">
+                REDOPS
+            </div>
+            <div class="text-redops-red-bright text-4xl">
+                SECURE
+            </div>
+        </nav>
+        @if (session('error-message'))
             <h3 style="color: red">{{ session('error-message') }}</h3>
         @endif
-    <div class="py-8  p-8">
-        @yield('content')
-    </div>
-        
     
     
+        <div class="">
+            @yield('content')
+        </div>
+    </section>
+    
+
+    <footer class="flex justify-between p-4 bg-black border-t border-red-900/40 items-center">
+        <div class="text-redops-red-bright lg:text-2xl">
+            CLASSIFIED SYSTEMS
+        </div>
+        <div class="text-redops-red-bright lg:text-2xl">
+            ENCRYPTION ACTIVE
+        </div>
+    </footer>
+
+
+
 
 </body>
 

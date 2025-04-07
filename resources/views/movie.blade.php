@@ -9,14 +9,14 @@
         {{-- Current Queue --}}
         <section class=" p-2 max-w-[550px]">
             <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
-                <h1 class="bg-redops-red-bright m-1 px-1">current_queue</h1>
+                <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">current_queue</h1>
                 <div class="p-1">
                     <ul class="bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 ">
                         @foreach ($users as $user)
                             <li class="flex justify-between @if($loop->first) bg-red-300 @endif">
                                 <div>
                                     {{ $loop->index + 1 }} - <a class="underline"
-                                        href={{ route('users.show', ['id' => $user->id]) }}>{{ $user->username }}</a>
+                                        href={{ route('users.show', ['id' => $user->id]) }}>{{ Str::limit($user->username,16) }}</a>
                                         @if($loop->first)
                                             [next]
                                         @endif
@@ -35,7 +35,7 @@
 
         <section class=" p-2 max-w-[550px]">
             <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
-                <h1 class="bg-redops-red-bright m-1 px-1">log_movie_{{ Auth::user()->username }}</h1>
+                <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">log_movie_{{ Auth::user()->username }}</h1>
 
                 <form method="POST" action={{ route('movie.pick') }} class="p-1 flex flex-col justify-between">
                     @csrf
@@ -55,7 +55,7 @@
 
         <section class=" p-2 max-w-[550px]">
             <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
-                <h1 class="bg-redops-red-bright m-1 px-1">movie_log</h1>
+                <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">movie_log</h1>
                 <div class="p-1">
                     <ul
                         class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300">
@@ -67,10 +67,10 @@
                                         href={{ route('users.show', ['id' => $moviePick->user->id]) }}>{{ ucfirst($moviePick->user->username) }}</a>
                                     =>
                                     <a class="underline text-red-400 hover:text-red-500"
-                                        href={{ route('movies.show', ['id' => $moviePick->id]) }}>{{ $moviePick->movie_title ? $moviePick->movie_title : 'CLASSIFIED' }}</a>
+                                        href={{ route('movies.show', ['id' => $moviePick->id]) }}>{{ $moviePick->movie_title ? Str::limit($moviePick->movie_title,16) : 'CLASSIFIED' }}</a>
                                     -
                                     <a class="text-red-600" href={{ route('movies.show', ['id' => $moviePick->id]) }}>
-                                        ({{ $moviePick->getAverageRating() }})
+                                        ({{ $moviePick->getAverageRating() ?? "No Data" }})
                                     </a>
                             </li>
                         @endforeach

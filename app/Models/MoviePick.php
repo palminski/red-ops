@@ -31,7 +31,7 @@ class MoviePick extends Model
     public function getAverageRating()
     {
         $rating = $this->movieRatings()->avg('rating');
-        return $rating ? number_format($rating, 2) : number_format($rating, 2);
+        return $rating ? number_format($rating, 2) : null;
     }
 
     protected static function boot() {

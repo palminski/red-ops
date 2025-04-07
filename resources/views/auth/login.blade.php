@@ -14,7 +14,7 @@
 <main class="max-w-xl  lg:pt-16 mx-auto">
     <section class=" p-2 max-w-[550px]">
         <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
-            <h1 class="bg-redops-red-bright m-1 px-1">redops.authenticator</h1>
+            <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">redops.authenticator</h1>
 
             <form class="p-1" action="{{ route('login') }}" method="post">
                 @csrf

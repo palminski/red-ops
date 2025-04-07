@@ -46,8 +46,8 @@
     <footer class="flex justify-between p-4 bg-black border-t border-red-900/40 items-center">
         
         @if (Auth::user())
-            <div class="text-redops-red-bright lg:text-2xl uppercase">
-                {{Auth::user()->username}} Authenticated
+            <div class="text-redops-red-bright lg:text-2xl">
+                {{Auth::user()->username}} authenticated
             </div>
             <div class="text-redops-red-bright lg:text-2xl uppercase">
                 <form action="{{ route('logout') }}" method="post">

@@ -14,6 +14,8 @@
         rel="stylesheet">
     @vite('resources/css/app.css')
     @vite(['resources/js/app.js'])
+    {{-- Lottie? --}}
+    <script src="https://unpkg.com/lottie-web@latest/build/player/lottie.min.js"></script>
 </head>
 
 <body class="bg-black flex flex-col min-h-svh justify-between bg-cover bg-center bg-no-repeat"

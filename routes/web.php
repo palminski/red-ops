@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DataController;
+use App\Http\Controllers\TestingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\AuthController;
@@ -27,8 +27,8 @@ Route::get('/signup', [AuthController::class, 'showSignupForm'])->name('signup')
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/movie-queue', [MovieController::class, 'index'])->name('movie-queue');
-    Route::get('/data', [DataController::class, 'showForm'])->name('show-form');
-    Route::get('/show-data', [DataController::class, 'showData'])->name('show-data');
+    Route::get('/data', [TestingController::class, 'showForm'])->name('show-form');
+    Route::get('/show-data', [TestingController::class, 'showData'])->name('show-data');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -48,6 +48,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id}', [MovieController::class, 'show'])->name('movies.show');
         Route::post('/{id}/rate', [MovieController::class, 'rate'])->name('movies.rate');
     });
+
+    Route::prefix('/testing')->group(function () {
+        Route::get('/', [TestingController::class, 'index'])->name('testing');
+    });
     
 });
 
@@ -56,6 +60,6 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //
-Route::post('/clear-session', [DataController::class, 'clearSession'])->name('clear-session');
-Route::post('/submit-form', [DataController::class, 'handleSubmit'])->name('submit-form');
+Route::post('/clear-session', [TestingController::class, 'clearSession'])->name('clear-session');
+Route::post('/submit-form', [TestingController::class, 'handleSubmit'])->name('submit-form');
 Route::post('/add-user', [UserController::class, "addUser"])->name("add-user");

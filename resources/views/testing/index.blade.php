@@ -30,7 +30,7 @@
                 renderer: 'svg',
                 loop: true,
                 autoplay: true,
-                path: "{{asset('/assets/animations/GoldFloppy.json')}}"
+                path: "{{asset('/assets/achievements/GoldFloppy.json')}}"
             });
         });
     </script>

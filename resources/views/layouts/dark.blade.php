@@ -18,8 +18,8 @@
     <script src="https://unpkg.com/lottie-web@latest/build/player/lottie.min.js"></script>
 </head>
 
-<body class="bg-black flex flex-col min-h-svh justify-between bg-cover bg-center bg-no-repeat"
-    style="background-image: url({{ asset('assets/images/RedOpsMap.svg') }})">
+<body class="bg-black flex flex-col min-h-svh justify-between bg-cover bg-top bg-repeat-x"
+    style="background-image: url({{ asset('assets/images/RedOpsMap.svg') }}); background-size: 100% auto">
 
 
     <section>
@@ -28,7 +28,7 @@
                 <a href="/">
                     REDOPS
                 </a>
-                
+
             </div>
             <div class="text-redops-red-bright font-bold text-xl animate-pulse">
                 SECURE
@@ -40,16 +40,63 @@
 
 
         <div class="">
+            @if ($errors->any())
+                <main class="max-w-xl  lg:p mx-auto">
+                    <section class=" p-2 max-w-[550px] ">
+                        <div
+                            class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1 ">
+                            <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">ERRORS DETECTED</h1>
+                            <div class="p-1 ">
+                                <ul class="bg-red-300">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            @endif
+
+            @if (session('success'))
+                <main class="max-w-xl  lg:p mx-auto">
+                    <section class=" p-2 max-w-[550px] ">
+                        <div
+                            class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1 ">
+                            <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">success</h1>
+                            <div class="p-1 ">
+                                {{session('success')}}
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            @endif
+
+            @if (session('message'))
+                <main class="max-w-xl  lg:p mx-auto">
+                    <section class=" p-2 max-w-[550px] ">
+                        <div
+                            class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1 ">
+                            <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">message</h1>
+                            <div class="p-1 ">
+                                {{session('message')}}
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            @endif
+
+
             @yield('content')
         </div>
     </section>
 
 
     <footer class="flex justify-between p-4 bg-black border-t border-red-900/40 items-center">
-        
+
         @if (Auth::user())
             <div class="text-redops-red-bright lg:text-2xl">
-                {{Auth::user()->username}} authenticated
+                {{ Auth::user()->username }} authenticated
             </div>
             <div class="text-redops-red-bright lg:text-2xl uppercase">
                 <form action="{{ route('logout') }}" method="post">
@@ -58,12 +105,12 @@
                 </form>
             </div>
         @else
-        <div class="text-redops-red-bright lg:text-2xl uppercase">
-            No User Authenticated
-        </div>
-        <div class="text-redops-red-bright lg:text-2xl">
-            {{-- CLASSIFIED SYSTEMS --}}
-        </div>
+            <div class="text-redops-red-bright lg:text-2xl uppercase">
+                No User Authenticated
+            </div>
+            <div class="text-redops-red-bright lg:text-2xl">
+                <a href={{ route('login') }} class="link-button" type="submit">Log In</a>
+            </div>
         @endif
     </footer>
 

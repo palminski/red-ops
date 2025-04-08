@@ -33,6 +33,7 @@
             </div>
         </section>
 
+        @if(Auth::user())
         <section class=" p-2 max-w-[550px]">
             <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
                 <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">log_movie_{{ Auth::user()->username }}</h1>
@@ -52,13 +53,14 @@
                 </form>
             </div>
         </section>
+        @endif
 
         <section class=" p-2 max-w-[550px]">
             <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
                 <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">movie_log</h1>
                 <div class="p-1">
                     <ul
-                        class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300">
+                        class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300 max-h-[400px] overflow-y-auto">
                         @foreach ($moviePicks as $moviePick)
                             <li class="my-2">
                                 <span>

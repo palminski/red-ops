@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Achievement;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,9 @@ class adminController extends Controller
     public function showUser($id)
     {
         $user = User::findOrFail($id);
+        $achievements = Achievement::get();
         return view('admin.show-user')
+        ->with('achievements', $achievements)
         ->with('user', $user);
     }
 

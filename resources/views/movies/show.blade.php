@@ -12,7 +12,7 @@
                 <header class="bg-redops-red-bright m-1 px-1 flex justify-between items-center">
                     <h1 class="text-red-100 text-xl">movie_info_{{ Str::limit($movie->movie_title, 40) ?? 'CLASIFIED' }}</h1>
                     <a class="bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 my-1 px-1"
-                        href="/">&#x2190;</a>
+                        href="{{route('movie-queue')}}">&#x2190; movie_index</a>
                 </header>
 
                 <div class="p-1 space-y-2">
@@ -58,7 +58,7 @@
                             class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300 ">
                             @foreach ($movie->movieRatings as $rating)
                                 <li class="my-2">
-                                    [<a class="underline" href={{ route('users.show', ['id' => $movie->user->id]) }}>
+                                    [<a class="underline" href={{ route('users.show', ['id' => $rating->user->id]) }}>
                                         {{ $rating->user->username }} </a>] rated movie <span
                                         class="text-red-400">[{{ $rating->rating }}]</span>
                                 </li>

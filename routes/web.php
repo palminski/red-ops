@@ -48,6 +48,16 @@ Route::prefix('/users')->group(function () {
     });
 });
 
+// Achievments
+Route::prefix('/achievement')->group(function () {
+    Route::get('/', [AchievementController::class, 'index'])->name('achievement.index');
+
+    Route::middleware(['auth'])->group(function () {
+        Route::post('/create', [AchievementController::class, 'create'])->name('achievement.create');
+        Route::post('/assign/{id}', [AchievementController::class, 'assign'])->name('achievement.assign');
+    });
+});
+
 // Test/Secret Page routes
 Route::prefix('/secret')->group(function () {
     Route::get('/', [TestingController::class, 'index'])->name('testing');
@@ -61,15 +71,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/show-user/{id}', [AdminController::class, 'showUser'])->name('admin.showUser');
         Route::post('/update-user/{id}', [AdminController::class, 'updateUser'])->name('admin.updateUser');
     });
-
-    
-
-    Route::prefix('/achievement')->group(function () {
-        Route::post('/create', [AchievementController::class, 'create'])->name('achievement.create');
-        Route::post('/assign/{id}', [AchievementController::class, 'assign'])->name('achievement.assign');
-    });
-
-    
 });
 
 //Testing

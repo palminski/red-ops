@@ -18,11 +18,11 @@
     <script src="https://unpkg.com/lottie-web@latest/build/player/lottie.min.js"></script>
 </head>
 
-<body class="bg-black flex flex-col min-h-svh justify-between bg-cover bg-top bg-repeat-x"
-    style="background-image: url({{ asset('assets/images/RedOpsMap.svg') }}); background-size: 100% auto">
+<body class="bg-black flex flex-col min-h-svh justify-between bg-cover bg-center bg-repeat-x"
+    style="background-image: url({{ asset('assets/images/RedOpsMap.svg') }})">
 
 
-    <section>
+    <section x-data x-cloak>
         <nav class="flex justify-between px-4 py-2 bg-black border-b border-red-900/40 items-center ">
             <div class="text-redops-red-bright text-6xl font-vt323 ">
                 <a href="/">
@@ -109,7 +109,7 @@
                 No User Authenticated
             </div>
             <div class="text-redops-red-bright lg:text-2xl">
-                <a href={{ route('login') }} class="link-button" type="submit">Log In</a>
+                <a href={{ route('login') }} class="link-button" type="submit">Log In</a> / <a href={{ route('signup') }} class="link-button" type="submit">Register</a>
             </div>
         @endif
     </footer>

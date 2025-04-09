@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -27,9 +29,37 @@ class UserController extends Controller
         ->with('moviePicks', $moviePicks);
     }
 
+    public function updateProfilePicture($id, Request $request)
+    {
+        $request->validate([
+            'profile_picture' => 'image|max:2048'
+        ]);
+
+        $user = Auth::user();
+        // dd($user);
+        if ($user->id !== $id)
+        {
+            abort(403);
+        }
+
+        if($user->profile_picture) {
+            Storage::disk('public')->delete($user->profile_picture);
+        }
+
+        $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+
+        $user->profile_picture = $path;
+        $user->save();
+
+        return redirect()->back()->with('success', 'profile picture updated!');
+    }
+
     public function addUser(Request $request)
     {
-
+        if ($request->input('secret_code') != env('SECRET_CODE'))
+        {
+            return redirect()->route('signup')->with('message', "Secret Code Incorrect! Contact Will");
+        }
         $validator = $this->validateNewUser($request);
 
         if ($validator->fails()) {
@@ -39,6 +69,7 @@ class UserController extends Controller
         $user = new User();
         $user->username = $request->username;
         $user->hashed_password = Hash::make($request->password);
+        $user->disabled = true;
         $user->save();
 
         return redirect(route('login'));

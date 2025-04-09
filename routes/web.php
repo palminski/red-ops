@@ -48,6 +48,11 @@ Route::prefix('/users')->group(function () {
     });
 });
 
+// Test/Secret Page routes
+Route::prefix('/secret')->group(function () {
+    Route::get('/', [TestingController::class, 'index'])->name('testing');
+});
+
 
 
 Route::middleware(['auth'])->group(function () {
@@ -64,9 +69,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/assign/{id}', [AchievementController::class, 'assign'])->name('achievement.assign');
     });
 
-    Route::prefix('/secret')->group(function () {
-        Route::get('/', [TestingController::class, 'index'])->name('testing');
-    });
+    
 });
 
 //Testing

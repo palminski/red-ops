@@ -58,7 +58,7 @@
                             class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300 ">
                             @foreach ($movie->movieRatings as $rating)
                                 <li class="my-2">
-                                    [<a class="underline" href={{ route('users.show', ['id' => $movie->user->id]) }}>
+                                    [<a class="underline" href={{ route('users.show', ['id' => $rating->user->id]) }}>
                                         {{ $rating->user->username }} </a>] rated movie <span
                                         class="text-red-400">[{{ $rating->rating }}]</span>
                                 </li>

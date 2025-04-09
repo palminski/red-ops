@@ -23,7 +23,8 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         
-        $moviePicks = $user->moviePicks;
+        $moviePicks = $user->moviePicks->sortByDesc('created_at');
+        // dd($moviePicks);
 
         return view('users.show')
         ->with('user', $user)

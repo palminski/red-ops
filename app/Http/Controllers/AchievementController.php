@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Hash;
 class AchievementController extends Controller
 {
 
+    public function index()
+    {
+        $achievements = Achievement::get();
+        return view('achievements.index')->with('achievements', $achievements);
+    }
 
 
     public function create(Request $request)
@@ -23,8 +28,6 @@ class AchievementController extends Controller
             'desc' => 'required',
             'file' => 'required',
         ]);
-
-
 
         $newAchievement = new Achievement();
 

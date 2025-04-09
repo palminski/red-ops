@@ -1,39 +1,30 @@
-@extends('layouts.dark')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('title')
-    Testing
-@endsection
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title', 'TOP SECRET')</title>
+    <link rel="stylesheet" href={{ asset('assets/css/style.css') }}>
 
-@section('content')
-    <main class="max-w-xl  lg:p mx-auto">
-        
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    @vite('resources/css/app.css')
+    @vite(['resources/js/app.js'])
+</head>
 
-        <section class=" p-2 max-w-[550px]">
-            <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
-                <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">user-achieve.test</h1>
-                <div class="p-1">
-                    <div class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300">
-                        <div id="gold-floppy" class="w-64 h-64">
-                            {{-- Animation Injected Here --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+<body class="bg-black">
+    <div class="mx-auto">
+        <img class="mx-auto max-w-[800px] py-5" src="{{ asset('/assets/images/Invitation Overview.svg') }}" alt="">
 
-    <script>
-        console.log("here");
-        document.addEventListener("DOMContentLoaded", function () {
-            lottie.loadAnimation({
-                container: document.getElementById('gold-floppy'),
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: "{{asset('/assets/achievements/GoldFloppy.json')}}"
-            });
-        });
-    </script>
+    </div>
 
-   
-@endsection
+
+
+
+</body>
+
+</html>

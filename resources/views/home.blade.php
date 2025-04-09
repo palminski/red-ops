@@ -23,14 +23,14 @@
                     d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
             </svg>
 
-            <h1 class="font-bold text-4xl">Users</h1>
+            <h1 class="font-bold text-4xl">Agents</h1>
         </a>
 
-        {{-- <a href={{ route('testing') }}
+        <a href={{ route('testing') }}
             class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
             <img class="p-6 h-24 lg:h-48" src="{{ asset('/assets/images/Top Secret.svg') }}" alt="">
-            <h1 class="font-bold text-4xl">Testing</h1>
-        </a> --}}
+            <h1 class="font-bold text-4xl">Secret File</h1>
+        </a>
         {{-- <a href={{ route('movie-queue') }} class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
                 <img class="p-6" src="{{ asset("/assets/images/Top Secret.svg") }}" alt="">
                 <h1 class="font-bold text-4xl">Briefing</h1>

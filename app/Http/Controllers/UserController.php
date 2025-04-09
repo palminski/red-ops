@@ -33,7 +33,7 @@ class UserController extends Controller
     public function updateProfilePicture($id, Request $request)
     {
         $request->validate([
-            'profile_picture' => 'image|max:5120'
+            'profile_picture' => 'image|max:12288'
         ]);
 
         $user = Auth::user();

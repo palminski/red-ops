@@ -12,10 +12,11 @@
                 <header class="bg-redops-red-bright m-1 px-1 flex justify-between items-center">
                     <h1 class="text-red-100 text-xl">agent_info_{{ $user->username }}</h1>
                     <a class="bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 my-1 px-1"
-                        href="/">&#x2190;</a>
+                        href="{{route('users.index')}}">&#x2190; user_index</a>
                 </header>
                 <div class="p-1 space-y-2">
-                    <div class="pr-3 flex justify-between">
+                    User Stats
+                    <div class=" flex justify-between">
                         <div>
                             <div x-on:click="showProfileImageUpload = true"
                                 class="relative bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-32 h-32 overflow-hidden">
@@ -42,7 +43,7 @@
                             @endif
 
                         </div>
-                        <div>
+                        <div class="bg-window-bright border-2 border-l-0 p-1 pr-3 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full text-right">
                             <div>
                                 Avg Movie Rating: {{ $user->getAverageScore() }}
                             </div>
@@ -53,10 +54,7 @@
                     </div>
 
 
-                    {{--  --}}
-                    <div class="py-2">
-                        <hr class="border-black">
-                    </div>
+                    
 
                     @if ($user->achievements->count() > 0)
                         <div>

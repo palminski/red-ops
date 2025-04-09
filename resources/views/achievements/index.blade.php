@@ -13,14 +13,16 @@
                 <header class="bg-redops-red-bright m-1 px-1 flex justify-between items-center">
                     <h1 class="text-red-100 text-xl">all_achievements</h1>
                     <a class="bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 my-1 px-1"
-                        href="/">&#x2190;</a>
+                        href="/">&#x2190; app_root</a>
                 </header>
 
                 <div class="p-1 space-y-2">
                     <div>
                         <h2>Achievements:</h2>
-                        <div class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300 max-h-[300px] overflow-y-auto">
+                        <div class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300 max-h-[800px] overflow-y-auto">
+                            <img class="mx-auto max-w-[300px] py-5 px-5" src="{{ asset('/assets/images/AchivementTitle.svg') }}" alt="">
                             @foreach ($achievements as $achievement)
+                            <hr class="border-red-500 mx-5">
                                 <div class="flex items-center justify-center">
                                     <div class="achievement-icon w-32 h-32"
                                         data-file={{ asset("/assets/achievements/$achievement->icon_name") }}>

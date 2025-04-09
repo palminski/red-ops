@@ -64,7 +64,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/assign/{id}', [AchievementController::class, 'assign'])->name('achievement.assign');
     });
 
-    Route::prefix('/testing')->group(function () {
+    Route::prefix('/secret')->group(function () {
         Route::get('/', [TestingController::class, 'index'])->name('testing');
     });
 });

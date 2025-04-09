@@ -16,8 +16,8 @@ export default {
       },
       colors: {
         'redops-red': {
-          bright:'#860f0f',
-          dark:'#344347',
+          bright:'#b30b06',
+          dark:'#860f0f',
         },
         'window': {
           bright: '#c2c0ba',

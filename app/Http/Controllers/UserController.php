@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image;
 
 class UserController extends Controller
 {
@@ -32,7 +33,7 @@ class UserController extends Controller
     public function updateProfilePicture($id, Request $request)
     {
         $request->validate([
-            'profile_picture' => 'image|max:2048'
+            'profile_picture' => 'image|max:5120'
         ]);
 
         $user = Auth::user();
@@ -46,9 +47,12 @@ class UserController extends Controller
             Storage::disk('public')->delete($user->profile_picture);
         }
 
-        $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+        $upload = $request->file('profile_picture');
+        $image = Image::read($upload)->resize(500,500);
+        $filename = uniqid().".".$upload->getClientOriginalExtension();
 
-        $user->profile_picture = $path;
+        Storage::disk('public')->put("profile_pictures/$filename", $image->encodeByExtension($upload->getClientOriginalExtension(), quality: 70));
+        $user->profile_picture = "profile_pictures/$filename";
         $user->save();
 
         return redirect()->back()->with('success', 'profile picture updated!');

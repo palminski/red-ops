@@ -17,10 +17,10 @@
                     <div class="pr-3 flex justify-between">
                         <div>
                             <div class="relative bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-32 h-32 overflow-hidden">
-                            <img x-on:click="showProfileImageUpload = true" class="" src="{{$user->profile_picture ? asset('storage/'.Auth::user()->profile_picture) : asset("/assets/images/placeholder.png")}}" alt="">
+                            <img x-on:click="showProfileImageUpload = true" class="" src="{{$user->profile_picture ? asset('storage/'.$user->profile_picture) : asset("/assets/images/placeholder.png")}}" alt="">
                                 <div class="absolute inset-0 bg-red-500 opacity-40 mix-blend-multiply pointer-events-none"></div>
                             </div>
-                            @if (Auth::user()->id == $user->id)
+                            @if (Auth::user() && Auth::user()->id == $user->id)
                                 <form x-show="showProfileImageUpload" action="{{ route('users.picture.update', ['id' => Auth::user()->id]) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div>

@@ -42,3 +42,5 @@
     body {
       font-family: "FakeWindows", system-ui;
     }
+
+    [x-cloak] { display: none !important; }

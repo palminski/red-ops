@@ -5,14 +5,34 @@
 @endsection
 
 @section('content')
-    <main class="max-w-xl  lg:p mx-auto" x-data="{ showPicks: false, showAchievement: true }">
+    <main class="max-w-xl  lg:p mx-auto" x-data="{ showPicks: false, showAchievement: true, showProfileImageUpload: false }">
         {{-- Current Queue --}}
         <section class=" p-2 max-w-[550px]">
             <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
-                <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">agent_info_{{ $user->username }}</h1>
-                <div class="p-1">
+                <header class="bg-redops-red-bright m-1 px-1 flex justify-between items-center">
+                    <h1 class="text-red-100 text-xl">agent_info_{{$user->username}}</h1>
+                    <a class="bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 my-1 px-1" href="/">&#x2190;</a>
+                </header>
+                <div class="p-1 space-y-2">
                     <div class="pr-3 flex justify-between">
-                        <img class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700" src="{{asset("/assets/images/placeholder.png")}}" alt="">
+                        <div>
+                            <div class="relative bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-32 h-32 overflow-hidden">
+                            <img x-on:click="showProfileImageUpload = true" class="" src="{{$user->profile_picture ? asset('storage/'.Auth::user()->profile_picture) : asset("/assets/images/placeholder.png")}}" alt="">
+                                <div class="absolute inset-0 bg-red-500 opacity-40 mix-blend-multiply pointer-events-none"></div>
+                            </div>
+                            @if (Auth::user()->id == $user->id)
+                                <form x-show="showProfileImageUpload" action="{{ route('users.picture.update', ['id' => Auth::user()->id]) }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div>
+                                        <input class="file:bg-zinc-900 file:text-white file:px-2 file:border file:border-zinc-300 cursor-pointer" type="file" name="profile_picture" accept="image/*" required>
+                                    </div>
+                                    <button class=" bg-zinc-900 text-white px-2 border border-zinc-300">
+                                        Upload
+                                    </button>
+                                </form>    
+                            @endif
+                            
+                        </div>
                         <div>
                             <div>
                                 Avg Movie Rating: {{ $user->getAverageScore() }}
@@ -40,8 +60,8 @@
                             <div x-show="showAchievement"
                                 class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300 max-h-[300px] overflow-y-auto">
                                 @foreach ($user->achievements as $achievement)
-                                <div class="flex items-center">
-                                    <div class="achievement-icon w-1/2" data-file={{  asset("/assets/achievements/$achievement->icon_name") }}>
+                                <div class="flex items-center justify-center">
+                                    <div class="achievement-icon w-32 h-32" data-file={{  asset("/assets/achievements/$achievement->icon_name") }}>
 
                                     </div>
                                     <div class="w-1/2">

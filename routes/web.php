@@ -42,6 +42,10 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('/users')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users.index');
     Route::get('/{id}', [UserController::class, 'show'])->name('users.show');
+
+    Route::middleware(['auth'])->group(function () {
+        Route::post('/profile-pic/{id}', [UserController::class, 'updateProfilePicture'])->name('users.picture.update');
+    });
 });
 
 

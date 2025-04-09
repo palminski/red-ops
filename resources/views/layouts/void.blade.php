@@ -44,7 +44,7 @@
                     <section class=" p-2 max-w-[550px] ">
                         <div
                             class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1 ">
-                            <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">ERRORS DETECTED</h1>
+                            <h1 class="bg-redops-red-dark m-1 px-1 text-red-100">ERRORS DETECTED</h1>
                             <div class="p-1 ">
                                 <ul class="bg-red-300">
                                     @foreach ($errors->all() as $error)
@@ -62,7 +62,7 @@
                     <section class=" p-2 max-w-[550px] ">
                         <div
                             class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1 ">
-                            <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">success</h1>
+                            <h1 class="bg-redops-red-dark m-1 px-1 text-red-100">success</h1>
                             <div class="p-1 ">
                                 {{session('success')}}
                             </div>
@@ -76,7 +76,7 @@
                     <section class=" p-2 max-w-[550px] ">
                         <div
                             class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1 ">
-                            <h1 class="bg-redops-red-bright m-1 px-1 text-red-100">message</h1>
+                            <h1 class="bg-redops-red-dark m-1 px-1 text-red-100">message</h1>
                             <div class="p-1 ">
                                 {{session('message')}}
                             </div>

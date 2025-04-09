@@ -9,7 +9,7 @@
         {{-- Current Queue --}}
         <section class=" p-2 max-w-[550px]">
             <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
-                <header class="bg-redops-red-bright m-1 px-1 flex justify-between items-center">
+                <header class="bg-redops-red-dark m-1 px-1 flex justify-between items-center">
                     <h1 class="text-red-100 text-xl">agent_info_{{ $user->username }}</h1>
                     <a class="bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 my-1 px-1"
                         href="{{route('users.index')}}">&#x2190; user_index</a>
@@ -20,10 +20,10 @@
                         <div>
                             <div x-on:click="showProfileImageUpload = true"
                                 class="relative bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-32 h-32 overflow-hidden">
-                                <img class=""
+                                <img class="grayscale"
                                     src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('/assets/images/placeholder.png') }}"
                                     alt="">
-                                <div class="absolute inset-0 bg-red-500 opacity-40 mix-blend-multiply pointer-events-none">
+                                <div class="absolute inset-0 bg-red-400 opacity-70 mix-blend-multiply pointer-events-none">
                                 </div>
                             </div>
                             @if (Auth::user() && Auth::user()->id == $user->id)

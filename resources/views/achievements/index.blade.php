@@ -50,6 +50,8 @@
         let achievementIcons = document.querySelectorAll('.achievement-icon');
         achievementIcons.forEach(icon => {
             let filePath = icon.dataset.file;
+            console.log(icon.dataset.file);
+            
             lottie.loadAnimation({
                 container: icon,
                 renderer: 'svg',

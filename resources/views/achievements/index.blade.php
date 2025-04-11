@@ -24,7 +24,7 @@
                             @foreach ($achievements as $achievement)
                             <hr class="border-red-500 mx-5">
                                 <div class="flex items-center justify-center">
-                                    <div class="achievement-icon w-32 h-32"
+                                    <div class="achievement-icon w-32 h-32 p-6"
                                         data-file={{ asset("/assets/achievements/$achievement->icon_name") }}>
 
                                     </div>

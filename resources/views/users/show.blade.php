@@ -55,7 +55,7 @@
 
 
                     
-
+                    {{-- Achievements --}}
                     @if ($user->achievements->count() > 0)
                         <div>
                             <div class="flex justify-between">
@@ -69,7 +69,7 @@
                                 class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300 max-h-[300px] overflow-y-auto">
                                 @foreach ($user->achievements as $achievement)
                                     <div class="flex items-center justify-center">
-                                        <div class="achievement-icon w-32 h-32"
+                                        <div class="achievement-icon w-32 h-32 p-6"
                                             data-file={{ asset("/assets/achievements/$achievement->icon_name") }}>
 
                                         </div>

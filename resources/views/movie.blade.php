@@ -44,7 +44,24 @@
                         <form method="POST" action={{ route('movie.pick') }}
                             class="p-1 flex flex-col justify-between bg-window-bright border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full">
                             @csrf
-                            <input type="hidden" name="userId" value={{ Auth::user()->id }}>
+
+                            @if (Auth::user()->admin)
+
+                                <label for="userId">Agent: </label>
+                                <select name="userId" id="userId" class="w-full border border-zinc-700 px-1">
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}" @if ($user->id == Auth::user()->id)
+                                            selected
+                                        @endif>{{ $user->username }}</option>
+                                    @endforeach
+                                </select>
+                                
+                            @else
+
+                                <input type="hidden" name="userId" value={{ Auth::user()->id }}>
+
+                            @endif
+
                             <div>
                                 <div>
                                     <label for="movieTitle">Movie:</label>

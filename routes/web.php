@@ -70,6 +70,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/show-user/{id}', [AdminController::class, 'showUser'])->name('admin.showUser');
         Route::post('/update-user/{id}', [AdminController::class, 'updateUser'])->name('admin.updateUser');
+        Route::post('/delete-movie', [AdminController::class, 'deleteMovie'])->name('admin.deleteMovie');
     });
 });
 

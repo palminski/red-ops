@@ -50,5 +50,42 @@
                 </div>
             </div>
         </section>
+
+        <section class=" p-2 max-w-[550px]">
+            <div class="bg-window-bright border-2 border-zinc-300 border-b-zinc-700 border-r-zinc-700 space-y-1">
+                <h1 class="bg-redops-red-dark m-1 px-1 text-red-100">del_picks_menu</h1>
+                <div class="p-1">
+                    <section>
+                        <h2>Prior Picks</h2>
+                        <ul
+                            class="bg-zinc-950 border-2 border-zinc-700 border-b-zinc-300 border-r-zinc-700 w-full p-1 text-red-300 max-h-[400px] overflow-y-auto">
+                            @foreach ($moviePicks as $moviePick)
+                                <li class="my-2">
+                                    <span>
+                                        [{{ $moviePick->created_at->format('Y-m-d') }}]
+                                        -
+                                        <a class="underline text-red-400 hover:text-red-500"
+                                            href={{ route('users.show', ['id' => $moviePick->user->id]) }}>{{ ucfirst($moviePick->user->username) }}</a>
+                                        =>
+                                        <a class="underline text-red-400 hover:text-red-500"
+                                            href={{ route('movies.show', ['id' => $moviePick->id]) }}>{{ $moviePick->movie_title ? Str::limit($moviePick->movie_title, 16) : 'CLASSIFIED' }}</a>
+                                        -
+                                        <form class="inline" action={{ route("admin.deleteMovie") }} method="post">
+                                            @csrf
+                                            <input type="hidden" name="movie_id" value="{{ $moviePick->id }}">
+                                        <button class="text-red-600 underline" type="submit">
+                                            DELETE
+                                        </button>
+                                        </form>
+                                        
+                                </li>
+                            @endforeach
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        
     </main>
 @endsection

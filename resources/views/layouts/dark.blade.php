@@ -8,6 +8,13 @@
     <title>@yield('title', 'Kino Order')</title>
     <link rel="stylesheet" href={{ asset('assets/css/style.css') }}>
 
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <meta name="theme-color" content="#b30b06">
+    <link rel="apple-touch-icon" href="{{ asset('icons/icon-192.png') }}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="RedOps">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
@@ -95,8 +102,37 @@
     <footer class="flex justify-between p-4 bg-black border-t border-red-900/40 items-center">
 
         @if (Auth::user())
-            <div class="text-redops-red-bright lg:text-2xl">
+            <div class="text-redops-red-bright lg:text-2xl"
+                x-data="{
+                    canInstall: false,
+                    isIOS: false,
+                    deferredPrompt: null,
+                    install() {
+                        if (this.deferredPrompt) {
+                            this.deferredPrompt.prompt();
+                            this.deferredPrompt = null;
+                            this.canInstall = false;
+                        }
+                    }
+                }"
+                x-init="
+                    let isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+                    isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !isStandalone;
+                    if (!isStandalone) {
+                        window.addEventListener('beforeinstallprompt', (e) => {
+                            e.preventDefault();
+                            deferredPrompt = e;
+                            canInstall = true;
+                        });
+                    }
+                ">
                 {{ Auth::user()->username }} authenticated
+                <span x-show="canInstall" x-cloak>
+                    &middot; <button type="button" class="link-button underline" @click="install()">Install App</button>
+                </span>
+                <span x-show="isIOS" x-cloak class="text-sm normal-case">
+                    &middot; Tap Share &rarr; Add to Home Screen to install
+                </span>
             </div>
             <div class="text-redops-red-bright lg:text-2xl uppercase">
                 <form action="{{ route('logout') }}" method="post">

@@ -43,7 +43,7 @@ class MovieController extends Controller
     {
         $request->validate([
             "rating" => "required|numeric|min:0|max:10",
-            "review" => "required|string|max:280"
+            "review" => "string|max:280"
         ]);
         $rating = MovieRating::where('user_id', '=', Auth::user()->id)->where("movie_pick_id", '=', $id)->first() ?? new MovieRating();
         $rating->user_id = Auth::user()->id;

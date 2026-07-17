@@ -30,6 +30,7 @@ Route::get('/signup', [AuthController::class, 'showSignupForm'])->name('signup')
 Route::get('/movie-queue', [MovieController::class, 'index'])->name('movie-queue');
 Route::prefix('/movies')->group(function () {
     Route::get('/{id}', [MovieController::class, 'show'])->name('movies.show');
+    Route::get('/{id}/omdb-rating', [MovieController::class, 'omdbRating'])->name('movies.omdb-rating');
     Route::middleware(['auth'])->group(function () {
         Route::post('/{id}/rate', [MovieController::class, 'rate'])->name('movies.rate');
     });

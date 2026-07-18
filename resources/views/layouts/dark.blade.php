@@ -29,7 +29,7 @@
     style="background-image: url({{ asset('assets/images/RedOpsMap.svg') }})">
 
     <div id="page-transition" aria-hidden="true">
-        <pre id="page-transition-text" class="text-redops-red-bright font-vt323 text-2xl lg:text-4xl px-6"></pre>
+        <pre id="page-transition-text" class="glitch-loading text-redops-red-bright font-vt323 text-2xl lg:text-4xl px-6"></pre>
     </div>
     <script>
         // Runs synchronously before first paint so a page reached via the fake

@@ -16,7 +16,7 @@
     background: #000;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.3s ease;
 }
 
 html.pt-active #page-transition {
@@ -28,6 +28,36 @@ html.pt-active #page-transition {
     white-space: pre-wrap;
     text-align: center;
     letter-spacing: 0.05em;
+}
+
+/* Faster, more sustained jump-cut glitch for the loading text specifically —
+   it runs continuously in the background so a burst is likely to land
+   within the short transition window, regardless of when it was triggered. */
+.glitch-loading {
+    animation: glitch-loading-flicker 1.4s infinite steps(1, end);
+}
+
+@keyframes glitch-loading-flicker {
+    0%, 18%, 32%, 48%, 62%, 78%, 92%, 100% {
+        transform: translate(0, 0);
+        text-shadow: none;
+    }
+    20%, 80% {
+        transform: translate(-2px, 0);
+        text-shadow: -2px 0 #ff6b81, 2px 0 #ff0000;
+    }
+    24%, 84% {
+        transform: translate(2px, 0) skewX(-2deg);
+        text-shadow: 2px 0 #ff6b81, -2px 0 #ff0000;
+    }
+    50% {
+        transform: translate(-1px, 0);
+        text-shadow: -1px 0 #ff6b81, 1px 0 #ff0000;
+    }
+    54% {
+        transform: translate(1px, 0);
+        text-shadow: 1px 0 #ff6b81, -1px 0 #ff0000;
+    }
 }
 
 body::after {

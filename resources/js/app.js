@@ -19,8 +19,8 @@ if ('serviceWorker' in navigator && !import.meta.env.DEV) {
     const textEl = document.getElementById('page-transition-text');
     if (!overlay || !textEl) return;
 
-    const OUTRO_MS = 850;
-    const INTRO_MS = 500;
+    const OUTRO_MS = 650;
+    const INTRO_MS = 380;
     const LINES = [
         'ESTABLISHING SECURE LINK...',
         'BYPASSING FIREWALL...',

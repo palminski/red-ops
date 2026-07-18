@@ -10,16 +10,18 @@
 
         <a href={{ route('movie-queue') }}
             class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
-            <img class="p-6 h-24 lg:h-48" src="{{ asset('/assets/images/icons/DirectorIcon.svg') }}" alt="">
-            <h1 class="font-bold text-4xl">KINO</h1>
+            <img class="glitch-img p-6 h-24 lg:h-48" style="animation-delay: 0s;"
+                src="{{ asset('/assets/images/icons/DirectorIcon.svg') }}" alt="">
+            <h1 class="glitch-hard font-bold text-4xl" style="animation-delay: 0s;">KINO</h1>
         </a>
 
         <a href={{ route('users.index') }}
             class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
 
-            
-            <img class="p-6 h-24 lg:h-48" src="{{ asset('/assets/images/icons/Agent icon.svg') }}" alt="">
-            <h1 class="font-bold text-4xl">AGENTS</h1>
+
+            <img class="glitch-img p-6 h-24 lg:h-48" style="animation-delay: 3s;"
+                src="{{ asset('/assets/images/icons/Agent icon.svg') }}" alt="">
+            <h1 class="glitch-hard font-bold text-4xl" style="animation-delay: 3s;">AGENTS</h1>
         </a>
 
 
@@ -40,8 +42,9 @@
             @if (Auth::user()->admin)
                 <a href={{ route('admin.index') }}
                     class="flex flex-col p-8 lg:p-12 w-1/2 justify-center items-center text-redops-red-bright">
-                    <img class="p-6 h-24 lg:h-48" src="{{ asset('/assets/images/icons/SataliteIcon.svg') }}" alt="">
-                    <h1 class="font-bold text-4xl">ADMIN</h1>
+                    <img class="glitch-img p-6 h-24 lg:h-48" style="animation-delay: 6s;"
+                        src="{{ asset('/assets/images/icons/SataliteIcon.svg') }}" alt="">
+                    <h1 class="glitch-hard font-bold text-4xl" style="animation-delay: 6s;">ADMIN</h1>
                 </a>
             @endif
         @endif

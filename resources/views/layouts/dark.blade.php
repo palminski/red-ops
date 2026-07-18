@@ -25,11 +25,25 @@
     <script src="https://unpkg.com/lottie-web@latest/build/player/lottie.min.js"></script>
 </head>
 
-<body class="bg-black flex flex-col min-h-svh justify-between bg-cover bg-center bg-repeat-x"
+<body class="relative bg-black flex flex-col min-h-svh justify-between bg-cover bg-center bg-repeat-x"
     style="background-image: url({{ asset('assets/images/RedOpsMap.svg') }})">
 
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div class="radar-sweep-wrap">
+            <div class="radar-sweep"></div>
+        </div>
+        {{-- Each blip's animation-delay = (bearing from center, clockwise from north / 360) * 10s sweep period,
+             so its ping fires exactly as the sweep arm passes over it. --}}
+        <span class="radar-blip" style="top: 27%; left: 19%; animation-delay: 8.53s;"></span>
+        <span class="radar-blip" style="top: 58%; left: 24%; animation-delay: 7.03s;"></span>
+        <span class="radar-blip" style="top: 24%; left: 50%; animation-delay: 0s;"></span>
+        <span class="radar-blip" style="top: 46%; left: 53%; animation-delay: 1.03s;"></span>
+        <span class="radar-blip" style="top: 33%; left: 68%; animation-delay: 1.31s;"></span>
+        <span class="radar-blip" style="top: 47%; left: 64%; animation-delay: 2.17s;"></span>
+        <span class="radar-blip" style="top: 74%; left: 80%; animation-delay: 3.58s;"></span>
+    </div>
 
-    <section x-data x-cloak>
+    <section x-data x-cloak class="relative z-10">
         <nav class="flex justify-between px-4 py-2 bg-black border-b border-red-900/40 items-center ">
             <div class="text-redops-red-bright text-6xl font-vt323 ">
                 <a href="/" class="glitch" data-text="REDOPS">
@@ -99,7 +113,7 @@
     </section>
 
 
-    <footer class="flex justify-between p-4 bg-black border-t border-red-900/40 items-center">
+    <footer class="relative z-10 flex justify-between p-4 bg-black border-t border-red-900/40 items-center">
 
         @if (Auth::user())
             <div class="text-redops-red-bright lg:text-2xl"

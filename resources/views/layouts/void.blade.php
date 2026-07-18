@@ -24,7 +24,7 @@
     <section x-data x-cloak>
         <nav class="flex justify-between px-4 py-2 bg-black border-b border-red-900/40 items-center ">
             <div class="text-redops-red-bright text-6xl font-vt323 ">
-                <a href="/">
+                <a href="/" class="glitch" data-text="REDOPS">
                     REDOPS
                 </a>
 

@@ -28,6 +28,18 @@
 <body class="relative bg-black flex flex-col min-h-svh justify-between bg-cover bg-center bg-repeat-x"
     style="background-image: url({{ asset('assets/images/RedOpsMap.svg') }})">
 
+    <div id="page-transition" aria-hidden="true">
+        <pre id="page-transition-text" class="text-redops-red-bright font-vt323 text-2xl lg:text-4xl px-6"></pre>
+    </div>
+    <script>
+        // Runs synchronously before first paint so a page reached via the fake
+        // transition starts already blacked-out instead of flashing real content.
+        if (sessionStorage.getItem('pt-intro')) {
+            sessionStorage.removeItem('pt-intro');
+            document.documentElement.classList.add('pt-active');
+        }
+    </script>
+
     <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div class="radar-sweep-wrap">
             <div class="radar-sweep"></div>
